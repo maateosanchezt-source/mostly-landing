@@ -133,23 +133,36 @@ main{position:relative;z-index:1}
 .arrow{position:absolute;width:90px;height:40px;stroke:var(--cream);fill:none;stroke-width:1.5;opacity:.7}
 
 /* ANATOMY */
-.anat{display:grid;grid-template-columns:1fr minmax(320px,560px) 1fr;gap:clamp(18px,3vw,60px);align-items:center;margin-top:clamp(30px,4vw,60px)}
+.anat{display:grid;grid-template-columns:1fr minmax(300px,460px) 1fr;gap:clamp(18px,3vw,54px);align-items:center;margin-top:clamp(30px,4vw,60px)}
 .anat .fig{position:relative}
-.anat .fig img{width:100%;aspect-ratio:4/5;object-fit:cover;-webkit-mask-image:radial-gradient(52% 52% at 50% 50%,#000 44%,rgba(0,0,0,.5) 74%,transparent 100%);mask-image:radial-gradient(52% 52% at 50% 50%,#000 44%,rgba(0,0,0,.5) 74%,transparent 100%)}
-.pin{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--cream);box-shadow:0 0 0 6px rgba(234,226,207,.14);transform:translate(-50%,-50%)}
-.pin i{position:absolute;top:50%;height:1px;background:rgba(234,226,207,.5)}
-.pin.L i{right:12px;width:var(--len,80px)}.pin.R i{left:12px;width:var(--len,80px)}
-.pin b{position:absolute;top:-8px;font-size:11px;letter-spacing:.18em;color:var(--dim)}
-.pin.L b{right:calc(var(--len,80px) + 18px)}.pin.R b{left:calc(var(--len,80px) + 18px)}
-.parts{display:flex;flex-direction:column;gap:clamp(14px,1.6vw,26px)}
-.part{padding:14px 0;border-top:1px solid var(--faint)}
+.anat .fig img{width:100%;height:auto;display:block;filter:contrast(1.03) saturate(1.04);
+  -webkit-mask-image:radial-gradient(72% 62% at 50% 50%,#000 62%,rgba(0,0,0,.55) 84%,transparent 100%);
+  mask-image:radial-gradient(72% 62% at 50% 50%,#000 62%,rgba(0,0,0,.55) 84%,transparent 100%)}
+.figcap{margin-top:16px;text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.pin{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--cream);transform:translate(-50%,-50%);box-shadow:0 0 0 5px rgba(6,5,4,.55),0 0 0 6px rgba(234,226,207,.35),0 0 22px 6px rgba(234,226,207,.18);cursor:default}
+.pin::after{content:attr(data-n);position:absolute;left:50%;top:-28px;transform:translateX(-50%);font-family:var(--disp);font-size:15px;letter-spacing:.06em;color:var(--cream);text-shadow:0 2px 10px #000,0 0 18px rgba(0,0,0,.9)}
+.pin.dn::after{top:auto;bottom:-30px}
+.pin i{position:absolute;left:50%;top:-24px;width:1px;height:15px;background:linear-gradient(180deg,rgba(234,226,207,.7),rgba(234,226,207,0))}
+.pin.dn i{top:auto;bottom:-24px;background:linear-gradient(0deg,rgba(234,226,207,.7),rgba(234,226,207,0))}
+.pin.on{background:var(--gold);box-shadow:0 0 0 5px rgba(6,5,4,.55),0 0 0 6px rgba(212,178,92,.55),0 0 30px 10px rgba(212,178,92,.3)}
+.pin.on::after{color:var(--gold)}
+.parts{display:flex;flex-direction:column;gap:clamp(12px,1.4vw,22px)}
+.part{padding:14px 0;border-top:1px solid var(--faint);transition:opacity .45s,transform .45s;position:relative}
 .part:last-child{border-bottom:1px solid var(--faint)}
 .part .k{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
 .part .nm{font-family:var(--disp);font-size:clamp(20px,1.7vw,28px);text-transform:uppercase}
+.part .nm em{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim);margin-right:10px;vertical-align:2px}
 .part .pc{font-family:var(--disp);font-size:clamp(20px,1.7vw,28px)}
 .part .f{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:6px}
 .part.keep .f{color:var(--gold)}
+.part.keep .pc{color:var(--gold)}
 .part .d{font-size:12.5px;color:var(--dim);line-height:1.6;margin-top:6px}
+.part.lit .nm,.part.lit .pc{color:var(--gold)}
+.seedfig{position:relative;margin:clamp(26px,3.4vw,48px) auto 0;max-width:820px}
+.seedfig img{width:100%;height:auto;display:block;
+  -webkit-mask-image:radial-gradient(74% 70% at 50% 50%,#000 56%,rgba(0,0,0,.5) 82%,transparent 100%);
+  mask-image:radial-gradient(74% 70% at 50% 50%,#000 56%,rgba(0,0,0,.5) 82%,transparent 100%)}
+.mono-note{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:14px}
 .tie{margin-top:clamp(30px,4vw,56px);display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--faint);border:1px solid var(--faint)}
 .tie div{background:var(--bg);padding:18px 16px}
 .tie .s{font-size:10px;letter-spacing:.22em;color:var(--dim);text-transform:uppercase}
@@ -271,8 +284,8 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
   .why,.founder,.pack,.two{grid-template-columns:1fr}
   .pack.rev .vis{order:0}
   .anat{grid-template-columns:1fr}
-  .anat .fig{max-width:520px;margin:0 auto}
-  .pin b{display:none}.pin i{display:none}
+  .anat .fig{max-width:430px;margin:0 auto;order:-1}
+  .pin::after{font-size:13px;top:-24px}.pin.dn::after{top:auto;bottom:-26px}
   .tie{grid-template-columns:repeat(2,1fr)}
   .pillars{grid-template-columns:1fr}
   .fph{position:relative;top:0}
@@ -395,21 +408,27 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
     <p class="p" data-f style="margin-top:22px">Cut a cacao pod open and this is what you find. The industry keeps the nib. Everything else is thrown away or burned.</p>
     <div class="anat">
       <div class="parts" data-f style="text-align:left">
-        <div class="part"><div class="k"><span class="nm">The husk</span><span class="pc">69%</span></div><div class="f">Thrown away</div><div class="d">The thick shell. Most of the fruit by weight. Piled up at the field edge, where the rot feeds next year's disease.</div></div>
-        <div class="part"><div class="k"><span class="nm">The pulp</span><span class="pc">12%</span></div><div class="f">Thrown away</div><div class="d">The sweet white flesh around every seed. The families eat it first. It never leaves the jungle.</div></div>
-        <div class="part"><div class="k"><span class="nm">The strand</span><span class="pc">1%</span></div><div class="f">Nobody has ever sold it</div><div class="d">The cord that ties the seeds through the core. Milky, oat-like.</div></div>
+        <div class="part" data-p="1"><div class="k"><span class="nm"><em>01</em>The husk</span><span class="pc">69%</span></div><div class="f">Thrown away</div><div class="d">The thick wall you can see cut open here. Most of the fruit by weight. Piled up at the field edge, where the rot feeds next year's disease.</div></div>
+        <div class="part" data-p="2"><div class="k"><span class="nm"><em>02</em>The pulp</span><span class="pc">12%</span></div><div class="f">Thrown away</div><div class="d">The sweet white flesh around every seed. The families eat it first. It never leaves the jungle.</div></div>
+        <div class="part" data-p="3"><div class="k"><span class="nm"><em>03</em>The strand</span><span class="pc">1%</span></div><div class="f">Nobody has ever sold it</div><div class="d">The cord that ties the seeds through the core. Milky, oat-like.</div></div>
       </div>
       <div class="fig" data-f>
-        <img src="pod.webp" alt="A cacao pod, opened" loading="lazy" decoding="async">
-        <span class="pin L" style="left:22%;top:30%;--len:70px"><i></i><b>HUSK</b></span>
-        <span class="pin L" style="left:44%;top:56%;--len:150px"><i></i><b>PULP</b></span>
-        <span class="pin R" style="left:60%;top:70%;--len:120px"><i></i><b>NIB</b></span>
-        <span class="pin R" style="left:52%;top:42%;--len:160px"><i></i><b>SHELL</b></span>
+        <img src="pod3d.webp" alt="A cacao pod cut open, showing the thick husk wall in cross-section and the seeds inside" loading="lazy" decoding="async">
+        <span class="pin" data-n="01" data-k="1" style="left:51.5%;top:30%"><i></i></span>
+        <span class="pin" data-n="02" data-k="2" style="left:61.5%;top:37.5%"><i></i></span>
+        <span class="pin dn" data-n="03" data-k="3" style="left:60.5%;top:55.5%"><i></i></span>
+        <div class="figcap">One pod, cut. The wall is the part nobody sells.</div>
       </div>
       <div class="parts" data-f style="text-align:left">
-        <div class="part"><div class="k"><span class="nm">The shell</span><span class="pc">8%</span></div><div class="f">Burned as waste</div><div class="d">The thin skin around each seed. Roasted off and dumped. It brews like coffee.</div></div>
-        <div class="part keep"><div class="k"><span class="nm">The nib</span><span class="pc">10%</span></div><div class="f">The only part they keep</div><div class="d">Fermented, dried, roasted, shipped. The single part the entire chocolate industry is built on.</div></div>
+        <div class="part" data-p="4"><div class="k"><span class="nm"><em>04</em>The shell</span><span class="pc">8%</span></div><div class="f">Burned as waste</div><div class="d">The thin skin around each seed. Roasted off and dumped. It brews like coffee.</div></div>
+        <div class="part keep" data-p="5"><div class="k"><span class="nm"><em>05</em>The nib</span><span class="pc">10%</span></div><div class="f">The only part they keep</div><div class="d">Fermented, dried, roasted, shipped. The single part the entire chocolate industry is built on.</div></div>
       </div>
+    </div>
+    <div class="seedfig" data-f>
+      <img src="seeds3d.webp" alt="A whole cacao bean, a bean split to show the nib, and an empty shell" loading="lazy" decoding="async">
+      <span class="pin" data-n="04" data-k="4" style="left:82.5%;top:49%"><i></i></span>
+      <span class="pin dn" data-n="05" data-k="5" style="left:49.5%;top:48%"><i></i></span>
+      <div class="mono-note">One seed. 8% shell, 10% nib. That 18% is the entire chocolate industry.</div>
     </div>
     <div class="tie" data-f>
       <div><div class="s">Today · nib + shell</div><div class="v">18%</div><div class="w">Where we start.</div></div>
@@ -662,6 +681,29 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
   document.querySelectorAll('.vis').forEach(function(v){v.querySelectorAll('.obj').forEach(function(o,i){G.to(o,{y:(i%2?-1:1)*10,duration:3+i*.6,yoyo:true,repeat:-1,ease:'sine.inOut'});});});
   /* roadmap bar */
   var rb=document.querySelector('[data-rbar]'); if(rb) G.to(rb.children,{width:'16.666%',duration:1.1,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:rb,start:'top 85%'}});
+
+  /* anatomy: pins <-> parts, two-way */
+  var pins=[].slice.call(document.querySelectorAll('.pin[data-k]')),
+      prts=[].slice.call(document.querySelectorAll('.part[data-p]'));
+  function link(k,on){
+    pins.forEach(function(p){ if(p.dataset.k===k) p.classList.toggle('on',on); });
+    prts.forEach(function(p){ if(p.dataset.p===k) p.classList.toggle('lit',on); });
+  }
+  pins.concat(prts).forEach(function(el){
+    var k=el.dataset.k||el.dataset.p;
+    el.addEventListener('mouseenter',function(){link(k,true)});
+    el.addEventListener('mouseleave',function(){link(k,false)});
+  });
+  /* walk the parts as the section scrolls through, so it explains itself */
+  var anat=document.querySelector('.anat');
+  if(anat&&window.matchMedia('(min-width:901px)').matches){
+    var order=['1','2','3','4','5'],cur=-1;
+    ScrollTrigger.create({trigger:anat,start:'top 62%',end:'bottom 30%',onUpdate:function(s){
+      var i=Math.min(order.length-1,Math.floor(s.progress*order.length));
+      if(i!==cur){ if(cur>=0) link(order[cur],false); cur=i; link(order[cur],true); }
+    },onLeave:function(){if(cur>=0){link(order[cur],false);cur=-1}},
+       onLeaveBack:function(){if(cur>=0){link(order[cur],false);cur=-1}}});
+  }
 })();
 </script>
 </body></html>
