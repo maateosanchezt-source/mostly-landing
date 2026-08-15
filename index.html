@@ -16,7 +16,7 @@
 @font-face{font-family:'Caveat';src:url('caveat-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
 @font-face{font-family:'Caveat';src:url('caveat-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
 
-:root{--bg:#060504;--cream:#EAE2CF;--cream2:#cfc6b0;--dim:#8a8172;--faint:rgba(234,226,207,.10);--gold:#d4b25c;
+:root{--bg:#060504;--cream:#EAE2CF;--cream2:#C4BBA4;--dim:#948C79;--faint:rgba(234,226,207,.10);--gold:#d4b25c;
 --disp:'Anton',Impact,sans-serif;--mono:'Space Mono',ui-monospace,monospace;--hand:'Caveat',cursive}
 *{margin:0;padding:0;box-sizing:border-box}
 html{background:var(--bg);scroll-behavior:smooth;overflow-x:clip}
@@ -35,10 +35,10 @@ main{position:relative;z-index:1}
 .bar{position:fixed;top:0;left:0;right:0;z-index:140;display:flex;justify-content:space-between;align-items:center;padding:16px clamp(20px,4vw,64px);
   transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .4s}
 .bar.hid{transform:translateY(-118%);opacity:0}
-.bar::before{content:"";position:absolute;inset:-1px 0 -34px 0;z-index:-1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(6,5,4,.97) 0%,rgba(6,5,4,.90) 46%,rgba(6,5,4,.55) 74%,rgba(6,5,4,0) 100%);
-  backdrop-filter:blur(9px) saturate(.9);-webkit-backdrop-filter:blur(9px) saturate(.9);
-  -webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}
+/* menu: a solid bar closed by one stylish hairline. no blur. */
+.bar::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--bg)}
+.bar::after{content:"";position:absolute;left:clamp(20px,4vw,64px);right:clamp(20px,4vw,64px);bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(234,226,207,.34) 12%,rgba(212,178,92,.55) 50%,rgba(234,226,207,.34) 88%,transparent)}
 /* wordmark = a window onto the pod skin. the fruit's own camo. */
 .logo{font-family:var(--disp);font-size:20px;letter-spacing:.16em;text-decoration:none;color:var(--cream);
   background-image:url(camo.webp);background-size:230% auto;background-position:26% 46%;
@@ -75,12 +75,36 @@ main{position:relative;z-index:1}
 .form input{flex:1;min-width:230px;background:rgba(234,226,207,.03);border:1px solid rgba(234,226,207,.22);color:var(--cream);font-family:var(--mono);font-size:14px;padding:19px 20px;outline:0;border-radius:0;letter-spacing:.02em;transition:border-color .25s,background .25s}
 .form input::placeholder{color:#6d6556}
 .form input:focus{border-color:var(--cream);background:rgba(234,226,207,.05)}
-.btn{position:relative;overflow:hidden;isolation:isolate;border:0;cursor:pointer;background:var(--cream);color:var(--bg);font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:19px 30px;border-radius:0;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:12px;white-space:nowrap}
-.btn::after{content:"";position:absolute;inset:0;background:#fff;transform:translateY(101%);transition:transform .35s cubic-bezier(.16,1,.3,1);z-index:-1}
-.btn:hover::after{transform:translateY(0)}
-.btn.ghost{background:transparent;color:var(--cream);border:1px solid rgba(234,226,207,.42)}
-.btn.ghost::after{background:var(--cream)}.btn.ghost:hover{color:var(--bg)}
-.btn.gold{background:linear-gradient(118deg,#b38f36,#e6cc78 50%,#b38f36);color:#2a2008}
+/* BUTTON — built for MOSTLY. a hairline capsule that fills from the left,
+   with a travelling arrow and a gold thread that draws itself on hover. */
+.btn{position:relative;isolation:isolate;border:0;cursor:pointer;background:transparent;color:var(--cream);
+  font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  padding:20px 34px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:16px;white-space:nowrap;
+  transition:color .5s cubic-bezier(.16,1,.3,1),letter-spacing .5s cubic-bezier(.16,1,.3,1)}
+.btn .bl{position:absolute;inset:0;border-radius:999px;border:1px solid rgba(234,226,207,.30);overflow:hidden;z-index:-1;transition:border-color .5s}
+.btn .bl::before{content:"";position:absolute;inset:0;background:var(--cream);border-radius:999px;
+  transform:translateX(-101%);transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.btn .bl::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .7s cubic-bezier(.16,1,.3,1) .05s}
+.btn .ar{position:relative;display:inline-block;width:16px;height:1px;background:currentColor;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.btn .ar::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+.btn:hover{color:var(--bg);letter-spacing:.24em}
+.btn:hover .bl::before{transform:translateX(0)}
+.btn:hover .bl{border-color:transparent}
+.btn:hover .ar{transform:translateX(7px)}
+.btn:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+.btn.solid{color:var(--bg)}
+.btn.solid .bl{border-color:transparent}
+.btn.solid .bl::before{transform:translateX(0)}
+.btn.solid:hover{color:var(--cream)}
+.btn.solid:hover .bl::before{transform:translateX(101%)}
+.btn.solid:hover .bl{border-color:rgba(234,226,207,.5)}
+.btn.solid:hover .bl::after{transform:scaleX(1)}
+.btn.ghost:hover .bl::after{transform:scaleX(1)}
+.btn.gold{color:#2a2008}
+.btn.gold .bl{border-color:transparent}
+.btn.gold .bl::before{transform:translateX(0);background:linear-gradient(118deg,#b38f36,#e6cc78 50%,#b38f36)}
 .micro{margin-top:14px;font-size:12.5px;color:var(--dim);line-height:1.7}
 .micro b{color:var(--cream);font-weight:400}
 
@@ -152,11 +176,11 @@ main{position:relative;z-index:1}
 .arrow{position:absolute;width:90px;height:40px;stroke:var(--cream);fill:none;stroke-width:1.5;opacity:.7}
 
 /* ANATOMY */
-.anat{display:grid;grid-template-columns:1fr minmax(300px,460px) 1fr;gap:clamp(18px,3vw,54px);align-items:center;margin-top:clamp(30px,4vw,60px)}
+.anat{display:grid;grid-template-columns:1fr minmax(260px,380px) 1fr;gap:clamp(24px,4vw,70px);align-items:center;margin-top:clamp(34px,4.4vw,68px)}
 .anat .fig{position:relative}
 .anat .fig img{width:100%;height:auto;display:block;filter:contrast(1.03) saturate(1.04);
-  -webkit-mask-image:radial-gradient(72% 62% at 50% 50%,#000 62%,rgba(0,0,0,.55) 84%,transparent 100%);
-  mask-image:radial-gradient(72% 62% at 50% 50%,#000 62%,rgba(0,0,0,.55) 84%,transparent 100%)}
+  -webkit-mask-image:radial-gradient(78% 74% at 50% 50%,#000 58%,rgba(0,0,0,.5) 84%,transparent 100%);
+  mask-image:radial-gradient(78% 74% at 50% 50%,#000 58%,rgba(0,0,0,.5) 84%,transparent 100%)}
 .figcap{margin-top:16px;text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
 .pin{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--cream);transform:translate(-50%,-50%);box-shadow:0 0 0 5px rgba(6,5,4,.55),0 0 0 6px rgba(234,226,207,.35),0 0 22px 6px rgba(234,226,207,.18);cursor:default}
 .pin::after{content:attr(data-n);position:absolute;left:50%;top:-28px;transform:translateX(-50%);font-family:var(--disp);font-size:15px;letter-spacing:.06em;color:var(--cream);text-shadow:0 2px 10px #000,0 0 18px rgba(0,0,0,.9)}
@@ -166,8 +190,8 @@ main{position:relative;z-index:1}
 .pin.on{background:var(--gold);box-shadow:0 0 0 5px rgba(6,5,4,.55),0 0 0 6px rgba(212,178,92,.55),0 0 30px 10px rgba(212,178,92,.3)}
 .pin.on::after{color:var(--gold)}
 .parts{display:flex;flex-direction:column;gap:clamp(12px,1.4vw,22px)}
-.part{padding:14px 0;border-top:1px solid var(--faint);transition:opacity .45s,transform .45s;position:relative}
-.part:last-child{border-bottom:1px solid var(--faint)}
+.part{padding:18px 0;border-top:1px solid rgba(234,226,207,.10);transition:opacity .45s,transform .45s;position:relative}
+.part:last-child{border-bottom:1px solid rgba(234,226,207,.10)}
 .part .k{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
 .part .nm{font-family:var(--disp);font-size:clamp(20px,1.7vw,28px);text-transform:uppercase}
 .part .nm em{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim);margin-right:10px;vertical-align:2px}
@@ -182,11 +206,78 @@ main{position:relative;z-index:1}
   -webkit-mask-image:radial-gradient(74% 70% at 50% 50%,#000 56%,rgba(0,0,0,.5) 82%,transparent 100%);
   mask-image:radial-gradient(74% 70% at 50% 50%,#000 56%,rgba(0,0,0,.5) 82%,transparent 100%)}
 .mono-note{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:14px}
-.tie{margin-top:clamp(30px,4vw,56px);display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--faint);border:1px solid var(--faint)}
-.tie div{background:var(--bg);padding:18px 16px}
+.tie{margin-top:clamp(34px,4.4vw,64px);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,52px)}
+.tie div{background:none;padding:20px 0 0;position:relative}
+.tie div::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,rgba(234,226,207,.34),rgba(234,226,207,.06))}
+.tie div:last-child::before{background:linear-gradient(90deg,rgba(212,178,92,.7),rgba(212,178,92,.08))}
 .tie .s{font-size:10px;letter-spacing:.22em;color:var(--dim);text-transform:uppercase}
 .tie .v{font-family:var(--disp);font-size:clamp(26px,2.6vw,42px);margin:6px 0 4px}
 .tie .w{font-size:12px;color:var(--cream2)}
+
+
+/* ===== 04 LAB · collage on real archive paper, with notes and arrows ===== */
+.labx{position:relative;margin-top:clamp(34px,4.4vw,64px);height:clamp(720px,68vw,980px)}
+.labx .grain{position:absolute;inset:0;background:url(paper.webp) center/120% auto;opacity:.045;
+  -webkit-mask-image:radial-gradient(80% 70% at 50% 45%,#000 40%,transparent 100%);mask-image:radial-gradient(80% 70% at 50% 45%,#000 40%,transparent 100%);pointer-events:none}
+/* a print = real aged mount, hard edge, no fade */
+.labx .print{position:absolute;background:url(paper.webp) center/cover,#efe7d4;padding:11px 11px 40px;
+  box-shadow:0 36px 70px -24px rgba(0,0,0,.95),0 0 0 1px rgba(0,0,0,.5),0 1px 0 rgba(255,255,255,.28) inset;
+  transform:rotate(var(--r,0deg));will-change:transform}
+.labx .print img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.88) contrast(1.05) sepia(.06);box-shadow:0 0 0 1px rgba(0,0,0,.45)}
+.labx .print .cap{position:absolute;left:13px;right:13px;bottom:11px;font-family:var(--hand);font-size:18px;color:#3a2f22;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.labx .note{position:absolute;font-family:var(--hand);color:var(--cream);font-size:clamp(19px,1.45vw,25px);line-height:1.18;max-width:24ch;transform:rotate(var(--r,0deg))}
+.labx .note.dim{color:var(--cream2)}
+.arw{position:absolute;width:clamp(90px,8vw,130px);height:auto;stroke:rgba(212,178,92,.75);stroke-width:1.4;fill:none;opacity:.9}
+.stampbox{position:absolute;border:1.5px solid rgba(212,178,92,.7);color:rgba(212,178,92,.9);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;padding:9px 14px;transform:rotate(var(--r,-7deg));border-radius:3px}
+.p1{left:0;top:2%;width:27%;aspect-ratio:3/4;--r:-3deg}
+.p2{left:31%;top:20%;width:24%;aspect-ratio:4/3;--r:2.5deg}
+.p3{right:3%;top:1%;width:23%;aspect-ratio:3/4;--r:4deg}
+.p4{left:5%;bottom:1%;width:25%;aspect-ratio:4/3;--r:-2deg}
+.p5{right:8%;bottom:4%;width:20%;aspect-ratio:3/4;--r:-5deg}
+.n1{left:30%;top:2%;--r:-1.5deg}
+.n2{left:1%;top:52%;--r:1deg}
+.n3{right:1%;top:47%;--r:-2deg;text-align:right}
+.n4{left:35%;bottom:6%;--r:1.5deg}
+.a1{left:26%;top:13%}
+.a2{right:24%;top:33%}
+.s1{right:34%;top:70%;--r:-7deg}
+/* facts row — hairlines, no boxes */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,64px);margin-top:clamp(40px,5vw,76px)}
+.fact{position:relative;padding-top:22px}
+.fact::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,rgba(212,178,92,.6),rgba(234,226,207,.06))}
+.fact .fk{display:block;font-family:var(--disp);font-size:clamp(28px,2.7vw,44px);color:var(--gold);line-height:1}
+.fact .fv{display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin:10px 0 12px}
+.fact p{font-size:12.5px;color:var(--cream2);line-height:1.75;margin:0}
+/* biomaterials block */
+.bio{margin-top:clamp(46px,5.5vw,90px);align-items:center;gap:clamp(28px,4.5vw,80px)}
+.biofig img{width:100%;height:auto;display:block;
+  -webkit-mask-image:radial-gradient(80% 78% at 50% 50%,#000 54%,rgba(0,0,0,.5) 82%,transparent 100%);mask-image:radial-gradient(80% 78% at 50% 50%,#000 54%,rgba(0,0,0,.5) 82%,transparent 100%)}
+.biotx .h3{margin:10px 0 18px}
+.biotx p{font-size:14px;color:var(--cream2);line-height:1.8;margin-bottom:14px}
+.biotx p b{color:var(--cream);font-weight:400}
+@media(max-width:1020px){
+  .labx{height:auto;display:flex;flex-direction:column;gap:22px}
+  .labx .print,.labx .note,.arw,.stampbox{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%;transform:none}
+  .labx .print{aspect-ratio:4/3}
+  .arw{display:none}.stampbox{align-self:flex-start;width:auto}
+  .facts{grid-template-columns:1fr;gap:26px}
+  .bio{grid-template-columns:1fr}
+}
+
+
+/* real photographed pack objects */
+.obj.realcard{width:60%;left:2%;top:16%;background:none;border:0;box-shadow:none;padding:0}
+.obj.realcard img{width:100%;height:auto;display:block;
+  -webkit-mask-image:radial-gradient(76% 76% at 50% 50%,#000 56%,rgba(0,0,0,.5) 82%,transparent 100%);mask-image:radial-gradient(76% 76% at 50% 50%,#000 56%,rgba(0,0,0,.5) 82%,transparent 100%)}
+/* the wordmark is etched in real type, not generated */
+.obj.realcard .etch{position:absolute;left:24%;top:41%;transform:rotate(-1deg) skewY(-2.5deg);display:flex;flex-direction:column;gap:5px;pointer-events:none}
+.obj.realcard .etch b{font-family:var(--disp);font-size:clamp(15px,1.5vw,23px);letter-spacing:.2em;font-weight:400;
+  color:rgba(58,44,14,.62);text-shadow:0 1px 0 rgba(255,232,168,.34)}
+.obj.realcard .etch i{font-style:normal;font-size:8.5px;letter-spacing:.26em;color:rgba(58,44,14,.5);text-shadow:0 1px 0 rgba(255,232,168,.3)}
+.obj.realcushma{width:31%;right:1%;top:2%;background:none;border:0;box-shadow:none;padding:0}
+.obj.realcushma img{width:100%;height:auto;display:block;
+  -webkit-mask-image:linear-gradient(180deg,#000 76%,transparent 100%);mask-image:linear-gradient(180deg,#000 76%,transparent 100%)}
+.obj.realcushma .tagline{position:absolute;left:0;bottom:2%;font-family:var(--hand);font-size:17px;color:var(--cream2);white-space:nowrap}
 
 /* FIELD notes */
 .notes{position:relative;margin-top:clamp(30px,4vw,60px);height:clamp(620px,60vw,880px)}
@@ -206,7 +297,7 @@ main{position:relative;z-index:1}
 .letter .sig{font-family:var(--hand);font-size:clamp(34px,3vw,48px);margin-top:20px;color:var(--cream)}
 .fph{position:sticky;top:100px}
 /* founder = a real print in a vintage mount, not a fade. hard, deliberate edge. */
-.fph .mount{background:linear-gradient(168deg,#efe7d4,#e2d8c0 58%,#d3c8ae);padding:16px 16px 62px;transform:rotate(-1.4deg);
+.fph .mount{background:url(paper.webp) center/cover,linear-gradient(168deg,#efe7d4,#e2d8c0 58%,#d3c8ae);padding:16px 16px 62px;transform:rotate(-1.4deg);
   box-shadow:0 40px 80px -26px rgba(0,0,0,.95),0 2px 0 rgba(255,255,255,.35) inset,0 0 0 1px rgba(0,0,0,.35);position:relative}
 .fph .mount::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.20),transparent 60%)}
@@ -273,8 +364,9 @@ main{position:relative;z-index:1}
 .two p b{color:var(--cream)}
 .al-r .two p{margin-left:auto}
 .road{margin-top:clamp(50px,6vw,90px);text-align:left}
-.rrow{display:grid;grid-template-columns:96px 100px 1fr 120px;gap:14px;align-items:baseline;padding:16px 0;border-top:1px solid var(--faint);font-size:12.5px;letter-spacing:.06em}
-.rrow:last-of-type{border-bottom:1px solid var(--faint)}
+.rrow{display:grid;grid-template-columns:96px 100px 1fr 120px;gap:18px;align-items:baseline;padding:20px 0;border-top:1px solid rgba(234,226,207,.09);font-size:12.5px;letter-spacing:.06em;transition:background .4s}
+.rrow:hover{background:rgba(234,226,207,.03)}
+.rrow:last-of-type{border-bottom:1px solid rgba(234,226,207,.09)}
 .rrow.h0{color:var(--dim);text-transform:uppercase;font-size:10.5px;letter-spacing:.18em}
 .rrow .st{color:var(--dim)}.rrow .w{color:#b9b09b}
 .rrow .pc{font-family:var(--disp);font-size:24px;text-align:right}
@@ -292,7 +384,7 @@ main{position:relative;z-index:1}
 .close .wrap{position:relative;z-index:2}
 .close .cdm{display:flex;gap:22px;margin:30px auto 34px;justify-content:center}
 .close .cdm .v{font-family:var(--disp);font-size:clamp(34px,4vw,64px);line-height:1}
-.close .cdm .l{font-size:9.5px;letter-spacing:.26em;color:var(--dim);text-transform:uppercase;margin-top:6px}
+.close .cdm .l{font-size:10px;letter-spacing:.26em;color:#9a927e;text-transform:uppercase;margin-top:6px}
 .close .form{margin:32px auto 0;justify-content:center}
 
 footer{position:relative;z-index:1;padding:80px 0 60px;overflow:hidden}
@@ -303,8 +395,8 @@ footer .wm{font-family:var(--disp);font-size:clamp(90px,19vw,340px);line-height:
 @supports not ((-webkit-background-clip:text) or (background-clip:text)){footer .wm{-webkit-text-fill-color:rgba(234,226,207,.05);opacity:1}}
 /* roadmap sits on a photo: give it its own floor so every row is readable */
 .rmapwrap{position:relative}
-.rmapwrap::before{content:"";position:absolute;inset:-22px -26px -18px -26px;z-index:-1;border-radius:2px;
-  background:linear-gradient(180deg,rgba(6,5,4,.90),rgba(6,5,4,.82));backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.rmapwrap::before{content:"";position:absolute;inset:-26px -30px -22px -30px;z-index:-1;
+  background:radial-gradient(120% 100% at 30% 0%,rgba(6,5,4,.94),rgba(6,5,4,.86) 60%,rgba(6,5,4,.80));border-radius:26px}
 footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:baseline;margin-top:-1.2em;position:relative}
 footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
 .joined{position:fixed;left:0;right:0;bottom:0;z-index:160;background:var(--cream);color:var(--bg);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:14px;display:none}
@@ -368,7 +460,7 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
     <form class="form" data-h data-form method="POST" action="https://formsubmit.co/maateosanchezt@gmail.com">
       <input type="email" name="email" placeholder="your@email.com" aria-label="Email" required>
       <input type="hidden" name="_captcha" value="false"><input type="hidden" name="_subject" value="MOSTLY waitlist signup"><input type="hidden" name="_next" value="https://mostly-landing.vercel.app/?joined=1">
-      <button class="btn" type="submit">Take a number →</button>
+      <button class="btn solid" type="submit"><span class="bl"></span>Take a number<span class="ar"></span></button>
     </form>
     <div class="hero-cta" data-h>
       <span class="micro" style="margin:0">Free number, or a founder pack from $49. <a class="tlink" href="#packs">See what you get ↓</a></span>
@@ -474,28 +566,53 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
   </div>
 </section>
 
-<!-- 04 YEARS INSIDE THE FIELD (lab notes collage) -->
+<!-- 04 YEARS INSIDE THE FIELD — the whole R&D story -->
 <section class="sec" data-rev>
   <div class="wrap">
     <div class="num"><span class="n">[ 04 ]</span><span class="t">The work</span></div>
     <h2 class="h h2"><span class="ln"><span data-l>Years inside</span></span><span class="ln"><span data-l>the field.</span></span></h2>
-    <p class="big" data-f style="margin-top:30px">We spent years studying what cacao can actually do — in kitchens, in labs, in the Peruvian jungle where it grows.</p>
-    <p class="big" data-f style="margin-top:14px"><b>What we found shouldn't be possible from a fruit.</b> On <b>10.10</b>, we show you the first one.</p>
-    <div class="notes" data-col>
-      <div class="rule"></div>
-      <div class="print" style="--r:-3deg;left:0;top:1%;width:27%;aspect-ratio:4/3" data-par><img src="pods.webp" alt="" loading="lazy" decoding="async"><span class="tape"></span><span class="cap">harvest day · Paytiti</span></div>
-      <p class="note" style="--r:-2deg;left:30%;top:0">Paytiti · Valle de la Convención.<br>6 to 7 hours from Cusco by mountain and jungle road.</p>
-      <div class="print" style="--r:4deg;left:30%;top:16%;width:19%;aspect-ratio:3/4" data-par><img src="tronco.webp" alt="" loading="lazy" decoding="async"><span class="tape"></span><span class="cap">pods grow from the trunk</span></div>
-      <p class="note dim" style="--r:2deg;left:53%;top:6%">chuncho: small pods, soft ridges,<br>turn gold when ripe. Not brown. Never brown.</p>
-      <div class="print" style="--r:-5deg;right:0;top:24%;width:32%;aspect-ratio:4/3" data-par><img src="husks.webp" alt="" loading="lazy" decoding="async"><span class="tape"></span><span class="cap">what's left after seed removal</span></div>
-      <p class="note" style="--r:-1deg;left:0;top:44%">the discard breeds next year's disease.<br>the waste feeds the problem.</p>
-      <div class="print" style="--r:3deg;left:4%;top:56%;width:19%;aspect-ratio:3/4" data-par><img src="family.webp" alt="" loading="lazy" decoding="async"><span class="tape"></span><span class="cap">Don José · beans in the sack</span></div>
-      <p class="note dim" style="--r:1deg;left:31%;top:66%">the strand tastes like oat milk (!!)<br>nobody has ever bottled it.</p>
-      <p class="note" style="--r:-3deg;right:3%;top:72%">cadmium: ask José for the lot map.<br>we publish every number.</p>
-      <div class="stampbox" style="right:5%;bottom:2%;--r:-8deg">Field journal · Vol. 01</div>
+    <p class="big" data-f style="margin-top:30px">Four years studying what cacao can actually do — in kitchens, in fermentation rooms, and in the Peruvian jungle where it grows.</p>
+    <p class="big" data-f style="margin-top:14px"><b>Not a slide deck. A thesis, a lab notebook, and 35 people tasting the results.</b></p>
+
+    <div class="labx" data-col>
+      <div class="grain"></div>
+      <div class="print p1" data-par><img src="r_pulp.webp" alt="A cacao pod opened by hand, white pulp inside" loading="lazy" decoding="async"><span class="cap">the pulp, in hand · Paytiti</span></div>
+      <p class="note n1">Paytiti · Valle de la Convención.<br>Six hours from Cusco by mountain road.</p>
+      <svg class="arw a1" viewBox="0 0 120 60" aria-hidden="true"><path d="M4 8 C 40 4, 84 18, 112 46" fill="none"/><path d="M112 46 l-13 -3 M112 46 l-2 -13" fill="none"/></svg>
+
+      <div class="print p2" data-par><img src="r_ferment.webp" alt="Wooden fermentation boxes lined with banana leaf" loading="lazy" decoding="async"><span class="cap">fermentation boxes · banana leaf</span></div>
+      <p class="note dim n2">4 to 6 days. Alcoholic phase first,<br>then acetic — the core hits 45-50 °C.</p>
+
+      <div class="print p3" data-par><img src="r_scoby.webp" alt="Jar of cacao SCOBY, labelled and dated" loading="lazy" decoding="async"><span class="cap">SCOBY · dated, logged</span></div>
+      <p class="note n3">the same microbe that makes<br>nata de coco. fed on cacao.</p>
+      <svg class="arw a2" viewBox="0 0 120 60" aria-hidden="true"><path d="M116 10 C 78 6, 34 20, 8 48" fill="none"/><path d="M8 48 l13 -3 M8 48 l2 -13" fill="none"/></svg>
+
+      <div class="print p4" data-par><img src="r_bags.webp" alt="Labelled vacuum sample bags" loading="lazy" decoding="async"><span class="cap">every batch, labelled</span></div>
+      <div class="print p5" data-par><img src="r_spirit.webp" alt="Bottle of cacao distillate" loading="lazy" decoding="async"><span class="cap">cacao distillate</span></div>
+      <p class="note dim n4">cascarilla brews like coffee.<br>the strand tastes like oat milk (!!)</p>
+      <span class="stampbox s1">Field journal · Vol. 01</span>
     </div>
+
+    <div class="facts" data-f>
+      <div class="fact"><span class="fk">Cauliflory</span><span class="fv">The botanical name</span><p>Cacao flowers and fruits straight from the trunk and the old wood, not the branch tips. It shares that with jackfruit, durian and cupuaçu.</p></div>
+      <div class="fact"><span class="fk">65-75%</span><span class="fv">Never becomes chocolate</span><p>Of the fresh weight of the fruit. The mucilage alone is 15-20% — the liquid that drains into the soil during fermentation.</p></div>
+      <div class="fact"><span class="fk">12 g/L</span><span class="fv">Bacterial cellulose</span><p>Grown from discarded cacao mucilage with no added sugar. Fourteen days, 25-30 °C, fed only on what the harvest throws away.</p></div>
+    </div>
+
+    <div class="two bio" data-f>
+      <div class="biofig"><img src="biomat.webp" alt="Bacterial cellulose film, pressed cacao-shell panels and vegetal leather swatches" loading="lazy" decoding="async"></div>
+      <div class="biotx">
+        <span class="eb">The horizon</span>
+        <div class="h h3">The fruit can become the packaging.</div>
+        <p>The same waste stream grows a translucent film one millimetre thick, presses into rigid panels, and tans into a flexible sheet that behaves like hide. Cellulose with no lignin and no hemicellulose — purer than anything you can pull out of a tree.</p>
+        <p><b>We put it in front of 35 people blind.</b> They rated it stronger than the industrial binder. Then we told them it was 100% cacao — and nine out of ten of the people who had preferred the industrial sample changed their answer. Nobody changed the other way.</p>
+        <p class="micro">Early generation. The film is still too opaque and not yet food-contact rated. We publish the weak numbers too.</p>
+      </div>
+    </div>
+    <div class="hook" data-f><span class="ar">↓</span><span>That is the research. <b>Here is what we do with it.</b></span></div>
   </div>
 </section>
+
 
 <!-- 05 PROMISE (centered) -->
 <section class="sec al-c" data-rev>
@@ -548,9 +665,8 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
       <div class="pack" data-f>
         <div class="vis">
           <div class="glow"></div>
-          <div class="obj gcard"><div class="in"><div style="display:flex;justify-content:space-between"><span class="wm">MOSTLY</span><span class="s">THE TEN</span></div><div class="row2"><span class="s">48H DOOR</span><span class="nu">Nº 01 / 10</span></div></div></div>
-          <div class="obj woven"><span>woven in the valley, right now</span></div>
-          <div class="obj piece"><span>HANDMADE<br>1 OF 10</span></div>
+          <div class="obj realcard"><img src="gcard.webp" alt="Solid brass founder card" loading="lazy" decoding="async"><span class="etch"><b>MOSTLY</b><i>THE TEN · Nº 01/10</i></span></div>
+          <div class="obj realcushma"><img src="cushma.webp" alt="Handwoven cushma" loading="lazy" decoding="async"><span class="tagline">one of three cushmas</span></div>
         </div>
         <div>
           <div class="tag">Door one · only 10 people</div>
@@ -564,7 +680,7 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
             <li><b>A private live call with Mateo</b> before launch. Ten seats, no recording.</li>
             <li>Everything in The 500, below.</li>
           </ul>
-          <div class="cta"><a class="btn gold" href="#ten">Take one of the 10</a><span class="under">When they're gone, they're gone</span></div>
+          <div class="cta"><a class="btn gold" href="#ten"><span class="bl"></span>Take one of the 10<span class="ar"></span></a><span class="under">When they're gone, they're gone</span></div>
         </div>
       </div>
       <!-- THE 500 -->
@@ -609,7 +725,7 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
           <form class="form" data-form method="POST" action="https://formsubmit.co/maateosanchezt@gmail.com">
             <input type="email" name="email" placeholder="your@email.com" aria-label="Email" required>
             <input type="hidden" name="_captcha" value="false"><input type="hidden" name="_subject" value="MOSTLY waitlist signup"><input type="hidden" name="_next" value="https://mostly-landing.vercel.app/?joined=1">
-            <button class="btn ghost" type="submit">Take a number</button>
+            <button class="btn ghost" type="submit"><span class="bl"></span>Take a number<span class="ar"></span></button>
           </form>
         </div>
       </div>
@@ -657,7 +773,7 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
     <form class="form" data-f data-form method="POST" action="https://formsubmit.co/maateosanchezt@gmail.com">
       <input type="email" name="email" placeholder="your@email.com" aria-label="Email" required>
       <input type="hidden" name="_captcha" value="false"><input type="hidden" name="_subject" value="MOSTLY waitlist signup"><input type="hidden" name="_next" value="https://mostly-landing.vercel.app/?joined=1">
-      <button class="btn" type="submit">Be inside →</button>
+      <button class="btn" type="submit"><span class="bl"></span>Be inside<span class="ar"></span></button>
     </form>
   </div>
 </section>
