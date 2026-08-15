@@ -181,7 +181,7 @@ main{position:relative;z-index:1}
 .anat .fig{position:relative}
 .anat .fig img{width:100%;height:auto;display:block;filter:contrast(1.03) saturate(1.04);
   
-  mix-blend-mode:screen}
+  filter:drop-shadow(0 24px 40px rgba(0,0,0,.8))}
 .figcap{margin-top:16px;text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
 .pin{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--cream);transform:translate(-50%,-50%);box-shadow:0 0 0 5px rgba(4,4,6,.55),0 0 0 6px rgba(234,226,207,.35),0 0 22px 6px rgba(234,226,207,.18);cursor:default}
 .pin::after{content:attr(data-n);position:absolute;left:50%;top:-28px;transform:translateX(-50%);font-family:var(--disp);font-size:15px;letter-spacing:.06em;color:var(--cream);text-shadow:0 2px 10px #000,0 0 18px rgba(0,0,0,.9)}
@@ -205,7 +205,7 @@ main{position:relative;z-index:1}
 .seedfig{position:relative;margin:clamp(26px,3.4vw,48px) auto 0;max-width:820px}
 .seedfig img{width:100%;height:auto;display:block;
   
-  mix-blend-mode:screen}
+  filter:drop-shadow(0 24px 40px rgba(0,0,0,.8))}
 .mono-note{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:14px}
 .tie{margin-top:clamp(34px,4.4vw,64px);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,52px)}
 .tie div{background:none;padding:20px 0 0;position:relative}
@@ -217,7 +217,7 @@ main{position:relative;z-index:1}
 
 
 /* ===== 04 LAB · collage on real archive paper, with notes and arrows ===== */
-.labx{position:relative;margin-top:clamp(34px,4.4vw,64px);height:clamp(860px,76vw,1120px)}
+.labx{position:relative;margin-top:clamp(34px,4.4vw,64px);height:clamp(980px,86vw,1280px)}
 .labx .grain{position:absolute;inset:0;background:url(paper.webp) center/120% auto;opacity:.045;
   -webkit-mask-image:radial-gradient(80% 70% at 50% 45%,#000 40%,transparent 100%);mask-image:radial-gradient(80% 70% at 50% 45%,#000 40%,transparent 100%);pointer-events:none}
 /* a print = real aged mount, hard edge, no fade */
@@ -234,24 +234,28 @@ main{position:relative;z-index:1}
 .p2{left:2%;top:30%;width:25%;aspect-ratio:3/4;--r:2.5deg}
 .p3{right:2%;top:1%;width:24%;aspect-ratio:4/3;--r:3.5deg}
 .p4{left:33%;top:34%;width:22%;aspect-ratio:4/3;--r:-2deg}
-.p5{right:4%;bottom:2%;width:26%;aspect-ratio:3/4;--r:-4deg}
+.p5{left:46%;bottom:2%;width:21%;aspect-ratio:3/4;--r:-4deg}
 .n1{left:30%;top:2%;--r:-1.5deg}
 .n2{left:1%;top:52%;--r:1deg}
 .n3{right:1%;top:47%;--r:-2deg;text-align:right}
 .n4{left:35%;bottom:6%;--r:1.5deg}
 .a1{left:25%;top:12%}
 .a2{right:26%;top:16%}
-.s1{left:2%;bottom:6%;--r:-7deg}
+.s1{right:3%;top:44%;--r:-7deg}
 
 /* leads: an arrow has to arrive somewhere. these are where they land. */
 .labx .lead{position:absolute;max-width:30ch}
 .labx .lead .lk{display:block;font-family:var(--disp);font-size:clamp(15px,1.25vw,20px);color:var(--gold);letter-spacing:.04em;margin-bottom:7px}
 .labx .lead p{font-size:12.5px;line-height:1.72;color:var(--cream2);margin:0}
 .labx .lead p b{color:var(--cream);font-weight:400}
+
+.p6{right:2%;bottom:24%;width:23%;aspect-ratio:4/3;--r:2deg}
+.a3{left:20%;bottom:26%}
+.l5{left:2%;bottom:16%}
 .l1{left:31%;top:3%}
-.l2{left:30%;top:60%}
+.l2{left:29%;top:56%}
 .l3{right:1%;top:28%}
-.l4{left:30%;bottom:1%}
+.l4{left:3%;bottom:1%}
 
 /* facts row — hairlines, no boxes */
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,64px);margin-top:clamp(40px,5vw,76px)}
@@ -263,7 +267,7 @@ main{position:relative;z-index:1}
 /* biomaterials block */
 .bio{margin-top:clamp(46px,5.5vw,90px);align-items:center;gap:clamp(28px,4.5vw,80px)}
 .biofig img{width:100%;height:auto;display:block;
-  mix-blend-mode:screen}
+  filter:drop-shadow(0 24px 40px rgba(0,0,0,.8))}
 .biotx .h3{margin:10px 0 18px}
 .biotx p{font-size:14px;color:var(--cream2);line-height:1.8;margin-bottom:14px}
 .biotx p b{color:var(--cream);font-weight:400}
@@ -280,7 +284,7 @@ main{position:relative;z-index:1}
 /* real photographed pack objects */
 .obj.realcard{width:60%;left:2%;top:16%;background:none;border:0;box-shadow:none;padding:0}
 .obj.realcard img{width:100%;height:auto;display:block;
-  mix-blend-mode:screen}
+  filter:drop-shadow(0 24px 40px rgba(0,0,0,.8))}
 /* the wordmark is etched in real type, not generated */
 .obj.realcard .etch{position:absolute;left:24%;top:41%;transform:rotate(-1deg) skewY(-2.5deg);display:flex;flex-direction:column;gap:5px;pointer-events:none}
 .obj.realcard .etch b{font-family:var(--disp);font-size:clamp(15px,1.5vw,23px);letter-spacing:.2em;font-weight:400;
@@ -288,13 +292,13 @@ main{position:relative;z-index:1}
 .obj.realcard .etch i{font-style:normal;font-size:8.5px;letter-spacing:.26em;color:rgba(58,44,14,.5);text-shadow:0 1px 0 rgba(255,232,168,.3)}
 .obj.realcushma{width:31%;right:1%;top:2%;background:none;border:0;box-shadow:none;padding:0}
 .obj.realcushma img{width:100%;height:auto;display:block;
-  mix-blend-mode:screen}
+  filter:drop-shadow(0 24px 40px rgba(0,0,0,.8))}
 .obj.realcushma .tagline{position:absolute;left:0;bottom:2%;font-family:var(--hand);font-size:17px;color:var(--cream2);white-space:nowrap}
 
 
 /* black-background artwork is composited, not pasted: screen blend makes the
    black literally become the page. no mask, no edge, no rectangle. */
-.blend{mix-blend-mode:screen;-webkit-mask-image:none!important;mask-image:none!important}
+.blend{mix-blend-mode:normal}
 
 
 /* two ways: two solid panels pushed right so the discard pile stays visible on the left */
@@ -584,8 +588,8 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
     </div>
     <div class="seedfig" data-f>
       <img src="seeds3d.webp" alt="A whole cacao bean, a bean split to show the nib, and an empty shell" loading="lazy" decoding="async">
-      <span class="pin" data-n="04" data-k="4" style="left:37%;top:30%"><i></i></span>
-      <span class="pin dn" data-n="05" data-k="5" style="left:61%;top:62%"><i></i></span>
+      <span class="pin" data-n="04" data-k="4" style="left:32.5%;top:32%"><i></i></span>
+      <span class="pin dn" data-n="05" data-k="5" style="left:61%;top:68%"><i></i></span>
       <div class="mono-note">One seed. 8% shell, 10% nib. That 18% is the entire chocolate industry.</div>
     </div>
     <div class="tie" data-f>
@@ -623,6 +627,9 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
       <div class="print p5" data-par><img src="x_panel.webp" alt="Labelled sample bars laid out for a tasting panel" loading="lazy" decoding="async"><span class="cap">35 people, blind</span></div>
       <div class="lead l4"><span class="lk">Measured, not felt</span><p>Every batch logged, coded and put in front of a panel who did not know what they were eating. <b>The numbers we did not like got published too.</b></p></div>
 
+      <div class="print p6" data-par><img src="family.webp" alt="Don José Tupayachi and Mateo with a sack of beans" loading="lazy" decoding="async"><span class="cap">Don José Tupayachi · Paytiti</span></div>
+      <svg class="arw a3" viewBox="0 0 130 70" aria-hidden="true"><path d="M8 56 C 40 62, 88 50, 122 16"/><path d="M122 16 l-13 4 M122 16 l-4 13"/></svg>
+      <div class="lead l5"><span class="lk">The name on the sack</span><p>He is the grower, not a certificate. His family took Mateo in and taught him that the fruit does not end at the seed. <b>Every lot we publish carries his name and his numbers.</b></p></div>
       <span class="stampbox s1">Field journal · Vol. 01</span>
     </div>
 
