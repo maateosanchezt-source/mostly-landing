@@ -1,524 +1,557 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MOSTLY — Not coffee. Not chocolate.</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MOSTLY — The Non-Chocolate Cacao Brand</title>
+<meta name="description" content="Cacao is one of the most powerful fruits on earth. For 5,000 years, sacred. For the last 100 — candy. We're here to end that. The reveal: 10.10.">
+<meta property="og:title" content="MOSTLY — Chocolate was never the point.">
+<meta property="og:description" content="The Non-Chocolate Cacao Brand. Reveal 10.10. Take a number.">
+<meta property="og:image" content="https://mostly-landing.vercel.app/veil.jpg">
+<meta name="theme-color" content="#060504">
+<link rel="preload" href="anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="space-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:'Anton';src:url('anton-latin-400-normal.woff2') format('woff2');font-weight:400}
-@font-face{font-family:'Space Mono';src:url('space-mono-latin-400-normal.woff2') format('woff2');font-weight:400}
-@font-face{font-family:'Space Mono';src:url('space-mono-latin-700-normal.woff2') format('woff2');font-weight:700}
+@font-face{font-family:'Anton';src:url('anton-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Space Mono';src:url('space-mono-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Space Mono';src:url('space-mono-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
 
-:root{--ink:#0D0B09;--ink2:#12100C;--cream:#E9E1CE;--dim:#8f8674;--line:rgba(233,225,206,.16);
---disp:'Anton';--mono:'Space Mono',monospace}
+:root{--bg:#060504;--cream:#EAE2CF;--cream2:#cfc6b0;--dim:#8a8172;--faint:rgba(234,226,207,.10);
+--disp:'Anton',Impact,sans-serif;--mono:'Space Mono',ui-monospace,monospace;--gold:#d4b25c}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--ink);color:var(--cream);font-family:var(--mono);font-size:15px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--cream);font-family:var(--mono);font-size:15px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+@media(pointer:coarse){body{cursor:auto}}
+a{color:inherit}
 img,video{display:block}
-::selection{background:var(--cream);color:var(--ink)}
+::selection{background:var(--cream);color:var(--bg)}
 
-/* ONE ROOM: beam + grain over everything */
-.beam{position:fixed;top:-25vh;right:-14vw;width:64vw;height:160vh;z-index:1;pointer-events:none;
-background:linear-gradient(198deg,rgba(233,225,206,.13),rgba(233,225,206,.05) 34%,rgba(233,225,206,0) 58%);
-transform:rotate(7deg);filter:blur(26px);will-change:transform}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.07;
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E")}
-main{position:relative;z-index:2}
+/* ── the room: grain + beam ── */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:80;opacity:.055;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-2%,1%)}40%{transform:translate(1%,-2%)}60%{transform:translate(-1%,2%)}80%{transform:translate(2%,1%)}100%{transform:translate(0,0)}}
+.beam{position:fixed;top:-30vh;right:-18vw;width:70vw;height:170vh;z-index:0;pointer-events:none;
+background:linear-gradient(200deg,rgba(234,226,207,.10),rgba(234,226,207,.035) 38%,rgba(234,226,207,0) 60%);transform:rotate(8deg);filter:blur(30px)}
+main{position:relative;z-index:1}
 
-.row{width:100%;max-width:1600px;margin:0 auto;padding:0 clamp(22px,4vw,72px)}
+/* ── cursor ── */
+.cur{position:fixed;left:0;top:0;width:14px;height:14px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:200;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+.cur.big{width:64px;height:64px}
+@media(pointer:coarse){.cur{display:none}}
 
-/* type system */
-.h{font-family:var(--disp);font-weight:400;text-transform:uppercase;letter-spacing:.005em;line-height:.94;text-wrap:balance}
-.h1{font-size:clamp(54px,6.5vw,120px)}
-.h2{font-size:clamp(40px,5vw,92px)}
-.h3{font-size:clamp(24px,2.1vw,36px);line-height:1.04}
-.mono{font-family:var(--mono)}
-.eb{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);font-weight:400}
-.sub{font-size:clamp(14px,1.15vw,17px);line-height:1.75;color:#cfc6b0;max-width:52ch}
-.sub b{color:var(--cream);font-weight:700}
-.foot-note{font-size:12.5px;color:var(--dim);line-height:1.7}
-.foot-note b{color:var(--cream);font-weight:400}
-.hr{height:1px;background:var(--line);border:0}
+/* ── progress + bar ── */
+.prog{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--cream);z-index:150;opacity:.7}
+.bar{position:fixed;top:0;left:0;right:0;z-index:140;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(20px,4vw,64px);mix-blend-mode:difference}
+.logo{font-family:var(--disp);font-size:20px;letter-spacing:.16em;color:#fff}
+.bar .lab{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#fff;opacity:.85}
+.bar .lab b{font-weight:700}
 
-/* boxed mono line (mockup) */
-.boxline{display:inline-block;border:1px solid var(--line);padding:14px 20px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream)}
+/* ── preloader ── */
+.pre{position:fixed;inset:0;z-index:300;background:var(--bg);display:flex;align-items:flex-end;justify-content:space-between;padding:clamp(20px,4vw,64px)}
+.pre .n{font-family:var(--disp);font-size:clamp(70px,14vw,220px);line-height:.85;letter-spacing:-.02em}
+.pre .w{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);padding-bottom:10px}
 
-/* form (mockup: square outline input + solid cream button) */
-.form{display:flex;gap:14px;max-width:640px;flex-wrap:wrap}
-.form input{flex:1;min-width:230px;background:transparent;border:1px solid rgba(233,225,206,.35);color:var(--cream);font-family:var(--mono);font-size:14px;padding:19px 20px;outline:0;border-radius:0;letter-spacing:.03em}
-.form input::placeholder{color:#7c7361}
-.form input:focus{border-color:var(--cream)}
-.form button{border:0;cursor:pointer;background:var(--cream);color:var(--ink);font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:19px 30px;border-radius:0;transition:transform .15s ease,opacity .2s}
-.form button:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 rgba(233,225,206,.25)}
-.micro{margin-top:16px;font-size:12.5px;color:var(--dim);letter-spacing:.02em;line-height:1.7}
+/* ── type ── */
+.h{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:.92;letter-spacing:.004em;text-wrap:balance}
+.h1{font-size:clamp(50px,5.7vw,108px)}
+.h2{font-size:clamp(42px,5.6vw,104px)}
+.h3{font-size:clamp(26px,2.4vw,40px);line-height:1}
+.eb{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--dim)}
+.eb i{font-style:normal;color:var(--cream);margin-right:14px}
+.p{font-size:clamp(15px,1.15vw,18px);line-height:1.7;color:var(--cream2);max-width:56ch}
+.p b{color:#fff;font-weight:700}
+.big{font-size:clamp(20px,2vw,30px);line-height:1.45;color:var(--cream);max-width:34ch}
+.big b{color:#fff}
+.ln{display:block;overflow:hidden}.ln>span{display:block;will-change:transform}
+.wrap{width:100%;max-width:1680px;margin:0 auto;padding:0 clamp(20px,4vw,64px)}
+.sec{position:relative;padding:clamp(100px,13vw,220px) 0 0}
+.num{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(28px,3.4vw,52px)}
+.num .n{font-size:11px;letter-spacing:.24em;color:var(--dim)}
+.num .t{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
 
-/* nav */
-.top{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:20px clamp(22px,4vw,72px);border-bottom:1px solid var(--line)}
-.logo{font-family:var(--disp);font-size:21px;letter-spacing:.14em}
-.burger{width:26px;cursor:pointer}.burger span{display:block;height:2px;background:var(--cream);margin:5px 0}
+/* ── forms / buttons ── */
+.form{display:flex;gap:12px;max-width:600px;flex-wrap:wrap}
+.form input{flex:1;min-width:230px;background:rgba(234,226,207,.03);border:1px solid rgba(234,226,207,.22);color:var(--cream);font-family:var(--mono);font-size:14px;padding:19px 20px;outline:0;border-radius:0;letter-spacing:.02em;transition:border-color .25s,background .25s}
+.form input::placeholder{color:#6d6556}
+.form input:focus{border-color:var(--cream);background:rgba(234,226,207,.05)}
+.btn{position:relative;overflow:hidden;isolation:isolate;border:0;cursor:none;background:var(--cream);color:var(--bg);font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:19px 30px;border-radius:0;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:12px;will-change:transform;white-space:nowrap}
+.btn::after{content:"";position:absolute;inset:0;background:#fff;transform:translateY(101%);transition:transform .35s cubic-bezier(.16,1,.3,1);z-index:-1}
+.btn:hover::after{transform:translateY(0)}
+.btn.ghost{background:transparent;color:var(--cream);border:1px solid rgba(234,226,207,.4)}
+.btn.ghost::after{background:var(--cream)}
+.btn.ghost:hover{color:var(--bg)}
+.micro{margin-top:14px;font-size:12.5px;color:var(--dim);line-height:1.7}
+.micro b{color:var(--cream);font-weight:400}
 
-/* hero */
-.hero{position:relative;min-height:92svh;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:0;overflow:hidden}
-.hero-l{padding:60px clamp(22px,4vw,72px) 80px;position:relative;z-index:3}
-.hero-r{position:relative;height:100%;min-height:560px}
-.hero-r video,.hero-r img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
--webkit-mask-image:linear-gradient(90deg,transparent 0,#000 26%);mask-image:linear-gradient(90deg,transparent 0,#000 26%)}
-.hero .h1{margin:26px 0 20px}
-.hero .sub{margin-bottom:34px}
-.hero .boxline{margin-bottom:34px}
+/* ── HERO ── */
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.12fr .88fr;align-items:end;overflow:hidden}
+.hero-media{position:absolute;inset:0 0 0 38%;z-index:0}
+.hero-media video,.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 36%;
+-webkit-mask-image:radial-gradient(62% 58% at 60% 42%,#000 28%,rgba(0,0,0,.5) 62%,transparent 100%);mask-image:radial-gradient(62% 58% at 60% 42%,#000 28%,rgba(0,0,0,.5) 62%,transparent 100%)}
+.hero-l{position:relative;z-index:2;min-width:0;padding:130px clamp(20px,4vw,64px) clamp(60px,8vh,110px)}
+.hero-l .eb{margin-bottom:22px}
+.hero-l .h1{margin-bottom:26px}
+.hero-l .ladder{display:flex;flex-direction:column;gap:6px;margin-bottom:38px}
+.hero-l .ladder p{font-size:clamp(15px,1.2vw,19px);line-height:1.6;color:var(--cream2)}
+.hero-l .ladder p b{color:#fff;font-weight:700}
+.hero-r{position:relative;z-index:2;min-width:0;padding:0 clamp(20px,4vw,64px) clamp(60px,8vh,110px);display:flex;justify-content:flex-end}
+.cd{text-align:right;position:relative;padding:26px 0 0}.cd::before{content:"";position:absolute;inset:-40px -60px -60px -80px;background:radial-gradient(60% 70% at 70% 60%,rgba(6,5,4,.92),rgba(6,5,4,.55) 55%,transparent 80%);z-index:-1;pointer-events:none}
+.cd .lab{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream2);margin-bottom:10px}
+.cd .row{display:flex;gap:clamp(10px,1.4vw,22px);justify-content:flex-end;align-items:baseline}
+.cd .u{text-align:center}
+.cd .v{font-family:var(--disp);font-size:clamp(46px,6.2vw,110px);line-height:.9;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.cd .l{font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);margin-top:8px}
+.cd .date{margin-top:14px;font-size:11px;letter-spacing:.3em;color:var(--cream)}
+.taken{display:flex;align-items:center;gap:14px;margin-top:22px}
+.taken .ticks{display:flex;gap:2px;flex:1;max-width:260px}
+.taken .ticks i{flex:1;height:10px;background:rgba(234,226,207,.12)}
+.taken .ticks i.on{background:var(--cream)}
+.taken .t{font-size:11px;letter-spacing:.14em;color:var(--dim);white-space:nowrap}
+.taken .t b{color:var(--cream);font-weight:700}
 
-/* reveals */
-.ln{display:block;overflow:hidden}
-.ln>span{display:block;transform:translateY(110%);transition:transform .9s cubic-bezier(.16,1,.3,1)}
-.in .ln>span{transform:none}
-.ln:nth-child(2)>span{transition-delay:.08s}.ln:nth-child(3)>span{transition-delay:.16s}
-.fd{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
-.in .fd,.fd.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.ln>span,.fd{transition:none;transform:none;opacity:1}}
+/* ── photos: never boxed, always melting into black ── */
+.ph{position:relative;overflow:visible}
+.ph img{width:100%;height:100%;object-fit:cover}
+.mask-r img{-webkit-mask-image:radial-gradient(52% 52% at 50% 50%,#000 38%,rgba(0,0,0,.5) 70%,transparent 100%);mask-image:radial-gradient(52% 52% at 50% 50%,#000 38%,rgba(0,0,0,.5) 70%,transparent 100%)}
+.mask-b img{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%),linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%),linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect}
+.mask-l img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%,#000 100%),linear-gradient(180deg,transparent 0,#000 15%,#000 85%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 30%,#000 100%),linear-gradient(180deg,transparent 0,#000 15%,#000 85%,transparent 100%);mask-composite:intersect}
 
-/* sections */
-.sec{padding:clamp(90px,11vw,170px) 0 0;position:relative}
-.eyebrow-row{display:flex;align-items:center;gap:18px;margin-bottom:26px}
-.eyebrow-row .n{font-size:12px;letter-spacing:.2em;color:var(--dim)}
-
-/* photo card (mockup 4: square, hairline border) */
-.pcard{border:1px solid var(--line);background:var(--ink2);padding:10px}
-.pcard img{width:100%;height:100%;object-fit:cover}
-.pcard .cap{padding:12px 6px 4px;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
-
-/* problema: 3 col */
-.prob{display:grid;grid-template-columns:.9fr 1.2fr .9fr;gap:clamp(24px,3vw,56px);align-items:center}
-.prob .pcard img{aspect-ratio:3/4}
-
-/* pistas slabs */
-.slabs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,34px);margin-top:clamp(40px,4.5vw,70px)}
-.slab{border:1px solid var(--line);background:
-linear-gradient(180deg,rgba(233,225,206,.045),rgba(233,225,206,.015) 30%,rgba(0,0,0,.25)),var(--ink2);
-padding:clamp(20px,2vw,30px);position:relative;transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s}
-.slab:hover{transform:translateY(-8px);border-color:rgba(233,225,206,.34)}
-.slab .num{font-size:13px;letter-spacing:.16em;color:var(--dim);margin-bottom:16px}
-.slab .img{border:1px solid var(--line);margin-bottom:22px}
-.slab .img img{width:100%;aspect-ratio:4/3.1;object-fit:cover}
-.slab .h3{margin:14px 0 12px}
-.slab .bar{width:44px;height:1px;background:var(--cream);opacity:.5}
-.slab p{font-size:13.5px;color:#bdb49e;line-height:1.75}
-
-/* crime scrub */
-.scrub{position:relative;height:300vh;margin-top:clamp(90px,11vw,170px)}
+/* ── CRIME scrub ── */
+.scrub{position:relative;height:320vh}
 .scrub .stick{position:sticky;top:0;height:100svh;overflow:hidden}
-.scrub video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.scrub .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,11,9,.82) 0%,rgba(13,11,9,.25) 46%,rgba(13,11,9,0) 70%)}
-.scrub .copy{position:absolute;left:clamp(22px,4vw,72px);bottom:clamp(40px,7vh,90px);max-width:640px}
-.scrub .copy .h2{margin-bottom:22px}
-.scrub .step{font-size:clamp(14px,1.2vw,17px);color:#cfc6b0;margin:10px 0;opacity:.18;transform:translateX(-6px);transition:opacity .4s,transform .4s}
-.scrub .step.on{opacity:1;transform:none;color:var(--cream)}
-.scrub .step.last{font-weight:700}
+.scrub video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%,#000 100%),linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 30%,#000 100%),linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect}
+.scrub .shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(6,5,4,.86) 0%,rgba(6,5,4,.55) 34%,rgba(6,5,4,0) 62%),linear-gradient(0deg,rgba(6,5,4,.7) 0%,rgba(6,5,4,0) 40%)}
+.scrub .copy{position:absolute;left:clamp(20px,4vw,64px);bottom:clamp(40px,8vh,100px);max-width:680px;z-index:2}
+.scrub .copy .h2{margin:16px 0 26px}
+.scrub .line{font-size:clamp(15px,1.3vw,19px);color:var(--cream2);margin:9px 0;opacity:.14;transform:translateX(-8px);transition:opacity .45s,transform .45s}
+.scrub .line.on{opacity:1;transform:none;color:var(--cream)}
+.scrub .line.last{font-weight:700;color:#fff}
+.after{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,60px);align-items:center;margin-top:-10vh}
+.after .ph{aspect-ratio:4/3.4}
 
-/* band */
-.band{position:relative;margin-top:clamp(18px,2vw,30px)}
-.band img{width:100%;height:min(84vh,820px);object-fit:cover}
-.band .bcap{position:absolute;left:clamp(22px,4vw,72px);bottom:20px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(233,225,206,.9);background:rgba(13,11,9,.68);padding:10px 16px;border:1px solid var(--line)}
+/* ── WHY NOT CHOCOLATE ── */
+.why{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,100px);align-items:center}
+.why .ph{aspect-ratio:4/5}
+.stamp{display:inline-block;border:1px solid var(--cream);padding:18px 24px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin:34px 0}
+.why .p+.p{margin-top:16px}
 
-/* doctrine */
-.doc{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,4vw,80px);align-items:center}
-.doc .stamp{display:inline-block;border:1px solid var(--cream);padding:18px 24px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin:32px 0}
-.doc .pcard img{aspect-ratio:4/4.8}
+/* ── ANATOMY exploded ── */
+.anat{position:relative;height:340vh}
+.anat .stick{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;grid-template-columns:1.05fr .95fr;align-items:center}
+.anat .stage{position:relative;height:100%;perspective:1400px;transform-style:preserve-3d}
+.slice{position:absolute;left:10%;width:80%;height:26%;background-image:url('pod.jpg');background-size:100% 400%;background-repeat:no-repeat;
+-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);mask-composite:intersect;will-change:transform;transform-style:preserve-3d}
+.slice:nth-child(1){top:12.5%;background-position:0 0%}
+.slice:nth-child(2){top:37.5%;background-position:0 33.333%}
+.slice:nth-child(3){top:62.5%;background-position:0 66.666%}
+.slice:nth-child(4){top:87.5%;background-position:0 100%}
+.anat .stage::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+background:radial-gradient(90% 80% at 50% 50%,transparent 45%,var(--bg) 88%)}
+.anat .side{position:relative;z-index:3;padding:0 clamp(20px,4vw,64px) 0 0}
+.anat .side .h2{font-size:clamp(34px,3.6vw,64px)}
+.anat .side .num{margin-bottom:18px}
+.layers{margin-top:26px}
+.layer{display:grid;grid-template-columns:36px 1fr auto;gap:16px;align-items:baseline;padding:13px 0;border-top:1px solid var(--faint);opacity:.28;transition:opacity .4s}
+.layer:last-child{border-bottom:1px solid var(--faint)}
+.layer.on{opacity:1}
+.layer .i{font-size:11px;letter-spacing:.14em;color:var(--dim)}
+.layer .nm{font-family:var(--disp);font-size:clamp(20px,1.7vw,28px);text-transform:uppercase}
+.layer .pc{font-family:var(--disp);font-size:clamp(20px,1.7vw,28px)}
+.layer .d{grid-column:2/4;font-size:12.5px;color:var(--dim);line-height:1.65;max-height:0;overflow:hidden;transition:max-height .5s}
+.layer.now .d{max-height:90px}
+.layer.on{opacity:.75}.layer.now{opacity:1}
+.layer .fate{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.layer.keep .fate{color:var(--gold)}
+.verdict{margin-top:24px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fff}
 
-/* anatomy */
-.anat{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,4vw,80px);align-items:start;margin-top:clamp(40px,4.5vw,70px)}
-.anat .visual{position:relative;border:1px solid var(--line);background:var(--ink2);padding:10px}
-.anat .visual img{width:100%;aspect-ratio:4/3.9;object-fit:cover;display:block}
-.apin{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;cursor:pointer;z-index:3}
-.apin::before{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--cream);opacity:.95;transition:transform .25s}
-.apin::after{content:"";position:absolute;inset:0;border:1px solid rgba(233,225,206,.55);border-radius:50%;animation:pulse 2.4s infinite}
-.apin.on::before{transform:scale(1.35);background:#fff}
-.apin .tag{position:absolute;left:40px;top:4px;font-size:10.5px;letter-spacing:.16em;color:var(--cream);background:rgba(13,11,9,.78);border:1px solid var(--line);padding:5px 10px;white-space:nowrap;opacity:0;transition:opacity .25s}
-.apin.on .tag{opacity:1}
-@keyframes pulse{0%{transform:scale(.7);opacity:1}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
-.alayers{display:flex;flex-direction:column}
-.alayer{border:1px solid var(--line);border-top:0;padding:20px clamp(18px,2vw,30px);display:grid;grid-template-columns:44px 1fr auto auto;gap:18px;align-items:baseline;cursor:pointer;transition:background .25s;position:relative}
-.alayer:first-child{border-top:1px solid var(--line)}
-.alayer .ix{font-size:12px;color:var(--dim);letter-spacing:.14em}
-.alayer .nm{font-family:var(--disp);font-size:clamp(20px,1.8vw,30px);text-transform:uppercase;letter-spacing:.01em;transition:color .25s}
-.alayer .pc{font-family:var(--disp);font-size:clamp(20px,1.8vw,30px)}
-.alayer .fate{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;padding:6px 10px;border:1px solid var(--line);color:var(--dim)}
-.alayer.on{background:rgba(233,225,206,.05)}
-.alayer.on .nm{color:#fff}
-.alayer.keep .fate{border-color:rgba(233,225,206,.6);color:var(--cream)}
-.alayer .desc{grid-column:2/5;font-size:12.5px;color:var(--dim);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .4s ease,margin .3s}
-.alayer.on .desc{max-height:80px;margin-top:6px}
-.averdict{margin-top:26px;border:1px solid var(--cream);padding:20px 24px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+/* ── FIELD / PROMISE ── */
+.field{min-height:80svh;display:flex;align-items:center}
+.field .h2{max-width:14ch}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,50px);margin-top:clamp(40px,5vw,80px)}
+.pillar .k{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-bottom:14px}
+.pillar .h3{margin-bottom:12px}
+.pillar p{font-size:14px;color:var(--dim);line-height:1.7;max-width:34ch}
 
+/* ── FOUNDER ── */
+.founder{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,100px);align-items:start}
+.letter{max-width:60ch}
+.letter p{font-size:clamp(15px,1.15vw,18px);line-height:1.8;color:var(--cream2);margin-bottom:1.1em}
+.letter p b{color:#fff;font-weight:700}
+.letter .sig{font-family:var(--disp);font-size:clamp(28px,2.6vw,42px);margin-top:26px;letter-spacing:.04em}
+.founder .ph{aspect-ratio:4/5;position:sticky;top:110px}
+
+/* ── DOORS ── */
+.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,30px);margin-top:clamp(40px,5vw,72px)}
+.door{position:relative;padding:clamp(24px,2.4vw,40px);background:linear-gradient(180deg,rgba(234,226,207,.05),rgba(234,226,207,.012) 40%,rgba(0,0,0,0));border:1px solid rgba(234,226,207,.09);display:flex;flex-direction:column;transition:border-color .4s,transform .4s cubic-bezier(.16,1,.3,1)}
+.door:hover{border-color:rgba(234,226,207,.28);transform:translateY(-6px)}
+.door.hot{border-color:rgba(212,178,92,.35);background:linear-gradient(180deg,rgba(212,178,92,.08),rgba(0,0,0,0) 55%)}
+.door .tag{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.door .h3{margin:14px 0 6px;font-size:clamp(30px,2.6vw,46px)}
+.door .pr{font-size:13px;letter-spacing:.12em;color:var(--cream);margin-bottom:22px}
+.door ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
+.door li{font-size:13px;color:#b9b09b;line-height:1.65;padding-left:18px;position:relative}
+.door li::before{content:"—";position:absolute;left:0;color:var(--dim)}
+.door li b{color:var(--cream);font-weight:700}
+.door .btn{margin-top:auto;width:100%}
+.door .under{margin-top:12px;text-align:center;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
 /* gold card */
-.gwrap{perspective:1100px;margin:6px 0 30px}
-.gcard{position:relative;aspect-ratio:1.586;border-radius:14px;overflow:hidden;transform-style:preserve-3d;transition:transform .3s ease;
-background:linear-gradient(118deg,#6e561a 0%,#b8933a 26%,#e8cf7e 46%,#c9a544 58%,#8a6d24 82%,#5f4a14 100%);
-box-shadow:0 30px 60px -20px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,240,190,.5), inset 0 -1px 0 rgba(0,0,0,.4)}
-.gcard::before{content:"";position:absolute;inset:0;opacity:.5;
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E")}
+.gwrap{perspective:1100px;margin:4px 0 26px}
+.gcard{position:relative;aspect-ratio:1.586;overflow:hidden;transform-style:preserve-3d;transition:transform .35s ease;
+background:linear-gradient(118deg,#6a5219 0%,#b38f36 26%,#e6cc78 46%,#c6a141 58%,#856820 82%,#5b4612 100%);
+box-shadow:0 34px 70px -24px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,240,190,.5),inset 0 -1px 0 rgba(0,0,0,.4)}
+.gcard::before{content:"";position:absolute;inset:0;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E")}
 .gcard .shine{position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 42%,rgba(255,250,225,.5) 50%,transparent 58%);transform:translateX(-70%);pointer-events:none}
 .gcard .in{position:absolute;inset:0;padding:9% 8%;display:flex;flex-direction:column;justify-content:space-between}
 .gcard .wm{font-family:var(--disp);font-size:clamp(20px,1.9vw,30px);letter-spacing:.16em;color:#4a3a10;text-shadow:0 1px 0 rgba(255,244,200,.65)}
-.gcard .ten{font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:#5d4a15;text-shadow:0 1px 0 rgba(255,244,200,.5)}
-.gcard .num{font-family:var(--mono);font-weight:700;font-size:clamp(12px,1vw,15px);letter-spacing:.14em;white-space:nowrap;color:#443509;text-shadow:0 1px 0 rgba(255,244,200,.6)}
+.gcard .ten{font-size:10px;letter-spacing:.3em;color:#5d4a15}
 .gcard .row2{display:flex;justify-content:space-between;align-items:flex-end}
-.gcard .hold{font-family:var(--mono);font-size:9px;letter-spacing:.2em;white-space:nowrap;color:#5d4a15}
+.gcard .hold{font-size:9px;letter-spacing:.2em;color:#5d4a15;white-space:nowrap}
+.gcard .nu{font-weight:700;font-size:clamp(12px,1vw,15px);letter-spacing:.14em;color:#443509;white-space:nowrap}
+.doorsfoot{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,60px);align-items:end}
 
-/* founder */
-.founder{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,4vw,70px);align-items:center}
-.founder .pcard img{aspect-ratio:4/4.6}
+/* ── MONEY + ROADMAP ── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,80px);margin-top:clamp(36px,4vw,60px)}
+.two .h3{margin:12px 0 12px}
+.two p{font-size:14.5px;color:#b9b09b;line-height:1.75;max-width:48ch}
+.two p b{color:var(--cream)}
+.road{margin-top:clamp(50px,6vw,90px)}
+.rrow{display:grid;grid-template-columns:96px 100px 1fr 120px;gap:14px;align-items:baseline;padding:16px 0;border-top:1px solid var(--faint);font-size:12.5px;letter-spacing:.06em}
+.rrow:last-child{border-bottom:1px solid var(--faint)}
+.rrow.h0{color:var(--dim);text-transform:uppercase;font-size:10.5px;letter-spacing:.18em}
+.rrow .st{color:var(--dim)}.rrow .w{color:#b9b09b}
+.rrow .pc{font-family:var(--disp);font-size:24px;text-align:right}
+.rbar{display:flex;height:6px;margin-top:-1px}
+.rbar i{width:0;background:var(--cream);opacity:.9}
+.rbar i+i{opacity:.7}.rbar i+i+i{opacity:.55}.rbar i+i+i+i{opacity:.4}.rbar i+i+i+i+i{opacity:.3}.rbar i+i+i+i+i+i{opacity:.2}
 
-/* doors */
-.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,34px);margin-top:clamp(40px,4.5vw,70px)}
-.door{border:1px solid var(--line);background:linear-gradient(180deg,rgba(233,225,206,.045),rgba(0,0,0,.25)),var(--ink2);padding:clamp(24px,2.4vw,38px);display:flex;flex-direction:column}
-.door.hot{border-color:rgba(233,225,206,.4)}
-.door .tag{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
-.door .h3{margin:14px 0 4px;font-size:clamp(28px,2.4vw,42px)}
-.door .pr{font-size:14px;letter-spacing:.1em;color:var(--cream);margin-bottom:22px}
-.door ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
-.door li{font-size:13px;color:#bdb49e;line-height:1.65;padding-left:18px;position:relative}
-.door li::before{content:"—";position:absolute;left:0;color:var(--dim)}
-.door li b{color:var(--cream);font-weight:700}
-.door .btn{margin-top:auto;display:block;text-align:center;background:var(--cream);color:var(--ink);text-decoration:none;font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;padding:18px;transition:transform .15s,box-shadow .15s}
-.door .btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 rgba(233,225,206,.25)}
-.door .btn.ghost{background:transparent;color:var(--cream);border:1px solid rgba(233,225,206,.4)}
-.door .under{margin-top:12px;text-align:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+/* ── CLOSE ── */
+.close{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+.close .media{position:absolute;inset:0 0 0 45%;z-index:0}
+.close .media video{width:100%;height:100%;object-fit:cover;object-position:60% 40%;
+-webkit-mask-image:radial-gradient(60% 58% at 62% 50%,#000 26%,rgba(0,0,0,.5) 60%,transparent 100%);mask-image:radial-gradient(60% 58% at 62% 50%,#000 26%,rgba(0,0,0,.5) 60%,transparent 100%)}
+.close .wrap{position:relative;z-index:2}
+.close .cdm{display:flex;gap:18px;margin:30px 0 34px}
+.close .cdm .v{font-family:var(--disp);font-size:clamp(34px,4vw,64px);line-height:1}
+.close .cdm .l{font-size:9.5px;letter-spacing:.26em;color:var(--dim);text-transform:uppercase;margin-top:6px}
 
-/* money + roadmap */
-.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.2vw,34px);margin-top:clamp(36px,4vw,60px)}
-.panel{border:1px solid var(--line);background:var(--ink2);padding:clamp(24px,2.6vw,42px)}
-.panel .h3{margin:12px 0 14px}
-.panel p{font-size:13.5px;color:#bdb49e;line-height:1.75}
-.panel p b{color:var(--cream)}
-.rtable{margin-top:clamp(36px,4vw,60px);border:1px solid var(--line)}
-.rrow{display:grid;grid-template-columns:110px 110px 1fr 130px;gap:14px;align-items:baseline;padding:15px clamp(16px,2vw,28px);border-top:1px solid var(--line);font-size:12.5px;letter-spacing:.06em}
-.rrow:first-child{border-top:0;color:var(--dim);text-transform:uppercase;font-size:10.5px;letter-spacing:.18em}
-.rrow .st{color:var(--dim)}
-.rrow .pc{font-family:var(--disp);font-size:22px;letter-spacing:.02em;text-align:right}
-.rrow .what{color:#bdb49e}
+footer{position:relative;z-index:1;padding:80px 0 60px;overflow:hidden}
+footer .wm{font-family:var(--disp);font-size:clamp(90px,19vw,340px);line-height:.8;letter-spacing:.02em;color:rgba(234,226,207,.05);text-align:center;user-select:none}
+footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:baseline;margin-top:-1.2em;position:relative}
+footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
 
-/* close */
-.cd{display:flex;gap:14px;flex-wrap:wrap;margin:40px 0}
-.cd div{border:1px solid var(--line);min-width:104px;padding:18px 20px;text-align:center}
-.cd .v{font-family:var(--disp);font-size:44px;line-height:1}
-.cd .l{font-size:10px;letter-spacing:.22em;color:var(--dim);margin-top:8px;text-transform:uppercase}
-
-footer{border-top:1px solid var(--line);margin-top:clamp(90px,11vw,170px);padding:46px 0 64px;position:relative;z-index:2}
-footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:baseline}
-footer a{color:var(--dim);text-decoration:none;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+/* joined banner */
+.joined{position:fixed;left:0;right:0;bottom:0;z-index:160;background:var(--cream);color:var(--bg);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:14px;display:none}
 
 @media(max-width:1020px){
-  .hero{grid-template-columns:1fr;min-height:auto}
-  .hero-r{min-height:56vh;order:-1}
-  .hero-r video,.hero-r img{-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 96%);mask-image:linear-gradient(180deg,#000 62%,transparent 96%)}
-  .prob{grid-template-columns:1fr}
-  .prob .pcard:first-child{display:none}
-  .slabs,.doors,.two{grid-template-columns:1fr}
-  .doc,.founder{grid-template-columns:1fr}
-  .rrow{grid-template-columns:80px 84px 1fr 70px}
-  .h1{font-size:clamp(52px,13vw,86px)}
+  .hero{grid-template-columns:1fr;align-items:start}
+  .hero-media{inset:0}
+  .hero-media video,.hero-media img{object-position:50% 20%;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9) 0,rgba(0,0,0,.6) 40%,transparent 78%);mask-image:linear-gradient(180deg,rgba(0,0,0,.9) 0,rgba(0,0,0,.6) 40%,transparent 78%)}
+  .hero-l{padding-top:16px;padding-bottom:70px}
+  .hero-r{order:-1;justify-content:flex-start;padding-top:44vh;padding-bottom:26px}
+  .cd{text-align:left;padding-top:0}.cd .row{justify-content:flex-start}.cd::before{display:none}
+  .cd .v{font-size:clamp(40px,11vw,60px)}
+  .taken{flex-wrap:wrap}.taken .t{white-space:normal}
+  .after,.why,.founder,.doors,.two,.doorsfoot{grid-template-columns:1fr}
+  .anat{height:auto}.anat .stick{position:relative;height:auto;grid-template-columns:1fr;gap:20px;padding:20px 0}
+  .anat .stage{height:70vw;max-height:520px}
+  .anat .side{padding:0 clamp(20px,4vw,64px)}
+  .pillars{grid-template-columns:1fr}
+  .founder .ph{position:relative;top:0}
+  .rrow{grid-template-columns:70px 80px 1fr 60px}
+  .close .media{inset:0}.close .media video{-webkit-mask-image:linear-gradient(180deg,transparent,rgba(0,0,0,.6) 40%,transparent);mask-image:linear-gradient(180deg,transparent,rgba(0,0,0,.6) 40%,transparent)}
+  .h1{font-size:clamp(50px,13vw,86px)}
+  .bar .lab span.l{display:none}
 }
-@media(max-width:640px){
-  .form{flex-direction:column}
-  .form button{width:100%}
-}
+@media(max-width:640px){.form{flex-direction:column}.btn{width:100%}}
+@media(prefers-reduced-motion:reduce){.grain{animation:none}}
 </style></head><body>
 
+<div class="pre" data-pre><div class="w">Mostly · The Non-Chocolate Cacao Brand</div><div class="n" data-pre-n>00</div></div>
+<div class="grain"></div>
 <div class="beam" data-beam></div>
+<div class="cur" data-cur></div>
+<div class="prog" data-prog></div>
+<div class="joined" data-joined>You're in. Your number arrives by email before the reveal.</div>
 
-<header class="top">
+<header class="bar">
   <div class="logo">MOSTLY</div>
-  <div class="burger"><span></span><span></span></div>
+  <div class="lab"><span class="l">The Non-Chocolate Cacao Brand &nbsp;·&nbsp; </span>Reveal <b>10.10</b></div>
 </header>
 
 <main>
 
 <!-- HERO -->
-<section class="hero" data-io>
+<section class="hero" id="top">
+  <div class="hero-media">
+    <video autoplay muted loop playsinline poster="veil.jpg" data-hero-video><source src="veil.mp4" type="video/mp4"></video>
+  </div>
   <div class="hero-l">
+    <p class="eb" data-h>Mostly — The Non-Chocolate Cacao Brand</p>
     <h1 class="h h1">
-      <span class="ln"><span>Not coffee.</span></span>
-      <span class="ln"><span>Not chocolate.</span></span>
+      <span class="ln"><span data-h>Chocolate was</span></span>
+      <span class="ln"><span data-h>never the point.</span></span>
     </h1>
-    <p class="sub fd">The fruit they burn. The brew they never made.</p>
-    <div class="boxline fd">THE REVEAL — 10.10 · THE LIST WALKS IN FIRST</div>
-    <form class="form fd" data-form method="POST" action="https://formsubmit.co/maateosanchezt@gmail.com">
-      <input type="email" name="email" placeholder="Enter your email" aria-label="Email" required><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_subject" value="MOSTLY waitlist signup"><input type="hidden" name="_next" value="https://mostly-landing.vercel.app/?joined=1">
-      <button type="submit">Join the first 500</button>
+    <div class="ladder">
+      <p data-h>Cacao is one of the most powerful fruits on earth.</p>
+      <p data-h>For 5,000 years, sacred. For the last 100 — candy.</p>
+      <p data-h><b>We're here to end that.</b></p>
+    </div>
+    <form class="form" data-h data-form method="POST" action="https://formsubmit.co/maateosanchezt@gmail.com">
+      <input type="email" name="email" placeholder="your@email.com" aria-label="Email" required>
+      <input type="hidden" name="_captcha" value="false"><input type="hidden" name="_subject" value="MOSTLY waitlist signup"><input type="hidden" name="_next" value="https://mostly-landing.vercel.app/?joined=1">
+      <button class="btn" type="submit" data-mag>Take a number →</button>
     </form>
-    <p class="micro fd">founding members get a number, the founder price,<br>and the doors before the public</p>
+    <div class="taken" data-h>
+      <div class="ticks" data-ticks></div>
+      <span class="t">The first 500 walk in first · <b data-taken>312</b> taken</span>
+    </div>
   </div>
   <div class="hero-r">
-    <video autoplay muted loop playsinline poster="a1.jpg"><source src="veil.mp4" type="video/mp4"></video>
-  </div>
-</section>
-
-<!-- 01 PROBLEMA -->
-<section class="sec" data-io>
-  <div class="row">
-    <div class="prob">
-      <div class="pcard fd"><img src="a5.jpg" alt="Beans roasted to death"><div class="cap">Roasted until it forgets it was a fruit</div></div>
-      <div>
-        <div class="eyebrow-row"><span class="n">[ 01 ]</span><span class="eb">The problem</span></div>
-        <h2 class="h h2" style="margin-bottom:26px">
-          <span class="ln"><span>Your coffee</span></span>
-          <span class="ln"><span>turned on you.</span></span>
-        </h2>
-        <p class="sub fd">The anxiety. The 3pm crash. The tolerance that keeps charging interest. And underneath it, an industry that burns <b>80% of a sacred fruit</b> you were never meant to drink like this.</p>
-        <hr class="hr fd" style="margin:30px 0 18px">
-        <p class="foot-note fd">[01] &nbsp;Most of the cacao fruit is discarded during industrial processing. The seed is barely 10% of the plant by weight.</p>
+    <div class="cd" data-h>
+      <div class="lab">The cloth comes off in</div>
+      <div class="row">
+        <div class="u"><div class="v" data-cd-d>00</div><div class="l">Days</div></div>
+        <div class="u"><div class="v" data-cd-h>00</div><div class="l">Hours</div></div>
+        <div class="u"><div class="v" data-cd-m>00</div><div class="l">Min</div></div>
+        <div class="u"><div class="v" data-cd-s>00</div><div class="l">Sec</div></div>
       </div>
-      <div class="pcard fd"><img src="pod.webp" alt="The living fruit"><div class="cap">The fruit — alive</div></div>
+      <div class="date">10 · 10 · 2026</div>
     </div>
   </div>
 </section>
 
-<!-- 02 LAS PISTAS -->
-<section class="sec" data-io>
-  <div class="row">
-    <div class="eyebrow-row"><span class="n">[ 02 ]</span><span class="eb">What we can tell you</span></div>
-    <div style="display:flex;align-items:baseline;gap:34px;flex-wrap:wrap">
-      <h2 class="h h2"><span class="ln"><span>Las pistas</span></span></h2>
-      <p class="foot-note fd" style="max-width:280px">Three ancestral clues.<br>One new kind of brew.</p>
-    </div>
-    <div class="slabs">
-      <div class="slab fd">
-        <div class="num">01</div>
-        <div class="img"><img src="card-belt.jpg" alt="Chuncho cacao on the trunk"></div>
-        <div class="bar"></div>
-        <div class="h h3">Born in the<br>Peruvian belt</div>
-        <p>Grown in the high jungle of Peru. Where altitude, humidity and soil create what can't be replicated.</p>
-      </div>
-      <div class="slab fd">
-        <div class="num">02</div>
-        <div class="img"><img src="card-cold.jpg" alt="Never roasted"></div>
-        <div class="bar"></div>
-        <div class="h h3">Cold,<br>never roasted</div>
-        <p>We don't roast. We don't burn. We preserve. Every particle stays active. Every compound stays alive.</p>
-      </div>
-      <div class="slab fd">
-        <div class="num">03</div>
-        <div class="img"><img src="card-calm.jpg" alt="Calm energy"></div>
-        <div class="bar"></div>
-        <div class="h h3">Calm energy.<br>No crash.</div>
-        <p>Steady clarity for hours. No jitters. No spike. No 3pm bill to pay. The list finds out how, first.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 03 CRIME · scroll-scrub -->
+<!-- 01 THE CRIME (scroll-scrub) -->
 <div class="scrub" data-scrub>
   <div class="stick">
-    <video muted playsinline preload="auto" poster="a4.jpg" data-scrub-video><source src="roaster.mp4" type="video/mp4"></video>
+    <video muted playsinline preload="auto" poster="roaster.jpg" data-scrub-video><source src="roaster.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="copy">
-      <div class="eyebrow-row"><span class="n">[ 03 ]</span><span class="eb" style="color:#cfc6b0">The crime</span></div>
+      <div class="num"><span class="n">[ 01 ]</span><span class="t">The crime</span></div>
       <h2 class="h h2">What the industry<br>did to cacao.</h2>
-      <div style="margin-top:24px">
-        <p class="step" data-step>They take a sacred fruit.</p>
-        <p class="step" data-step>Use a fraction. Torch the rest.</p>
-        <p class="step" data-step>Mix it with sugar. Call it a treat.</p>
-        <p class="step last" data-step>We don't make chocolate. We set the fruit free.</p>
-      </div>
+      <p class="line" data-step>They take a sacred fruit.</p>
+      <p class="line" data-step>Use a fraction. Torch the rest.</p>
+      <p class="line" data-step>Mix it with sugar. Call it a treat.</p>
+      <p class="line" data-step>Forests fall for it. People pay for it. The fruit's real power — gone up in smoke.</p>
+      <p class="line last" data-step>We don't make chocolate. We set the fruit free.</p>
     </div>
   </div>
 </div>
-<div class="band">
-  <img src="a6.jpg" alt="The discard">
-  <div class="bcap">[02] &nbsp;80% of the fruit · thrown away after seed removal</div>
-</div>
-
-<!-- 04 WHY NOT CHOCOLATE -->
-<section class="sec" data-io>
-  <div class="row">
-    <div class="doc">
-      <div>
-        <div class="eyebrow-row"><span class="n">[ 04 ]</span><span class="eb">The question everyone asks</span></div>
-        <h2 class="h h2" style="margin-bottom:26px">
-          <span class="ln"><span>"So why don't we</span></span>
-          <span class="ln"><span>make chocolate?"</span></span>
-        </h2>
-        <p class="sub fd">Because the best chocolate on earth already exists. It's made in the valley, by the families who grow the fruit. We lived with one of them. <b>They have the medals to prove it.</b></p>
-        <p class="sub fd" style="margin-top:16px">And here's what they taught us: <b>they eat the whole fruit.</b> The pulp. The strand. The husk. This idea wasn't born in a lab. It was born at their table.</p>
-        <p class="sub fd" style="margin-top:16px">But even perfect chocolate has a limit: it uses the seed. <b>20% of the plant.</b> The other 80% has no market. Every family in cacao knows it. Nobody had built the answer.</p>
-        <div class="stamp fd">Chocolate, at its best, is 20% of the story.</div>
-        <p class="sub fd"><b>We are the other 80. Not against chocolate. Beyond it.</b><br>We don't compete with their chocolate. <b>We complete their fruit.</b></p>
-      </div>
-      <div class="pcard fd">
-        <img src="tronco.jpg" alt="Chuncho growing from the trunk">
-        <div class="cap">[03] &nbsp;Chuncho · grows straight from the trunk</div>
-      </div>
-    </div>
+<section class="wrap">
+  <div class="after">
+    <div class="ph mask-r" data-par><img src="beans.jpg" alt="Roasted until it forgets it was a fruit"></div>
+    <div class="ph mask-r" data-par><img src="husks.jpg" alt="The husks, thrown away after seed removal"></div>
   </div>
 </section>
 
-<!-- 05 ANATOMY -->
-<section class="sec" data-io>
-  <div class="row">
-    <div class="eyebrow-row"><span class="n">[ 05 ]</span><span class="eb">The anatomy of the fruit</span></div>
+<!-- 02 WHY NOT CHOCOLATE -->
+<section class="sec" data-rev>
+  <div class="wrap why">
+    <div>
+      <div class="num"><span class="n">[ 02 ]</span><span class="t">The question everyone asks</span></div>
+      <h2 class="h h2" style="margin-bottom:30px">
+        <span class="ln"><span data-l>"So why don't we</span></span>
+        <span class="ln"><span data-l>make chocolate?"</span></span>
+      </h2>
+      <p class="p" data-f>Because the best chocolate on earth already exists. It's made in the valley, by the families who grow the fruit. We lived with one of them. <b>They have the medals to prove it.</b></p>
+      <p class="p" data-f>And here's what they taught us: <b>they eat the whole fruit.</b> The pulp. The strand. The husk. This idea wasn't born in a lab. It was born at their table.</p>
+      <p class="p" data-f>The industry is another story. It buys harvests rotten, roasts them beyond taste to hide the damage, and calls a sugar bar with barely 10% cacao "chocolate". <b>That version shouldn't exist.</b></p>
+      <p class="p" data-f>But even perfect chocolate has a limit: it uses the seed. <b>20% of the plant.</b> The other 80% has no market. Every family in cacao knows it. Nobody had built the answer.</p>
+      <div class="stamp" data-f>Chocolate, at its best, is 20% of the story.</div>
+      <p class="p" data-f><b>We are the other 80. Not against chocolate. Beyond it.</b><br>We don't compete with their chocolate. <b>We complete their fruit.</b><br>That's why we're The Non-Chocolate Cacao Brand.</p>
+    </div>
+    <div class="ph mask-r" data-par><img src="tronco.jpg" alt="Chuncho cacao growing straight from the trunk"></div>
+  </div>
+</section>
+
+<!-- 03 ANATOMY (exploded) -->
+<div class="anat" data-anat>
+  <div class="stick">
+    <div class="stage" data-stage>
+      <div class="slice" data-slice="0"></div>
+      <div class="slice" data-slice="1"></div>
+      <div class="slice" data-slice="2"></div>
+      <div class="slice" data-slice="3"></div>
+    </div>
+    <div class="side">
+      <div class="num"><span class="n">[ 03 ]</span><span class="t">The anatomy of the fruit</span></div>
+      <h2 class="h h2">One fruit.<br>Four parts.<br>One kept.</h2>
+      <div class="layers">
+        <div class="layer" data-layer="0"><span class="i">01</span><span class="nm">The husk</span><span class="pc">~70%</span><span class="d">The thick ridged shell. Most of the fruit by weight. Dumped at the field edge, where the discard breeds next year's disease.</span></div>
+        <div class="layer" data-layer="1"><span class="i">02</span><span class="nm">The pulp</span><span class="pc">~9%</span><span class="d">The sweet white flesh around every seed. The part the families eat first. It never leaves the jungle.</span></div>
+        <div class="layer" data-layer="2"><span class="i">03</span><span class="nm">The strand</span><span class="pc">~1%</span><span class="d">The cord that ties the seeds through the core. Milky, oat-like. Nobody has ever sold it.</span></div>
+        <div class="layer keep" data-layer="3"><span class="i">04</span><span class="nm">The seed</span><span class="pc">~20%</span><span class="d">Fermented, dried, roasted, shipped. The single part of the plant the entire chocolate industry is built on. <span class="fate">— the only part they keep</span></span></div>
+      </div>
+      <p class="verdict" data-verdict style="opacity:0">They keep the 20%. We take the rest.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 04 YEARS INSIDE THE FIELD -->
+<section class="sec field" data-rev>
+  <div class="wrap">
+    <div class="num"><span class="n">[ 04 ]</span><span class="t">The work</span></div>
     <h2 class="h h2">
-      <span class="ln"><span>One fruit.</span></span>
-      <span class="ln"><span>Four parts. One kept.</span></span>
+      <span class="ln"><span data-l>Years inside</span></span>
+      <span class="ln"><span data-l>the field.</span></span>
     </h2>
-    <div class="anat">
-      <div class="visual fd" data-anat-visual>
-        <img src="pod.webp" alt="The open fruit, layer by layer">
-        <div class="apin" style="left:20%;top:34%" data-hot="0"><span class="tag">THE HUSK</span></div>
-        <div class="apin" style="left:52%;top:44%" data-hot="1"><span class="tag">THE PULP</span></div>
-        <div class="apin" style="left:47%;top:60%" data-hot="2"><span class="tag">THE OAT</span></div>
-        <div class="apin" style="left:63%;top:70%" data-hot="3"><span class="tag">THE SEED</span></div>
-      </div>
-      <div>
-        <div class="alayers fd">
-          <div class="alayer" data-layer="0">
-            <span class="ix">01</span><span class="nm">The husk</span><span class="pc">~70%</span><span class="fate">Discarded</span>
-            <p class="desc">The thick ridged shell. Most of the fruit by weight. Dumped in piles at the field edge, where the discard feeds next year's disease.</p>
-          </div>
-          <div class="alayer" data-layer="1">
-            <span class="ix">02</span><span class="nm">The pulp</span><span class="pc">~9%</span><span class="fate">Discarded</span>
-            <p class="desc">The sweet white flesh around every seed. The part the families eat first. It never leaves the jungle.</p>
-          </div>
-          <div class="alayer" data-layer="2">
-            <span class="ix">03</span><span class="nm">The oat</span><span class="pc">~1%</span><span class="fate">Discarded</span>
-            <p class="desc">The strand that ties the seeds through the core. Milky, oat-like, almost impossible to save without field systems. Nobody has ever sold it.</p>
-          </div>
-          <div class="alayer keep" data-layer="3">
-            <span class="ix">04</span><span class="nm">The seed</span><span class="pc">~20%</span><span class="fate">The only part they keep</span>
-            <p class="desc">Fermented, dried, roasted, shipped. The single part of the plant the entire chocolate industry is built on.</p>
-          </div>
-        </div>
-        <div class="averdict fd">They keep the 20%. We take the rest. — <span style="opacity:.75">that is the whole roadmap: 18% today → 30% → 99% → 100% → the tree → the plant</span></div>
-      </div>
+    <p class="big" data-f style="margin-top:34px">We spent years studying what cacao can actually do — in kitchens, in labs, in the Peruvian jungle where it grows.</p>
+    <p class="big" data-f style="margin-top:18px"><b>What we found shouldn't be possible from a fruit.</b></p>
+    <p class="p" data-f style="margin-top:22px">On <b>10.10</b>, we show you the first one.</p>
+  </div>
+</section>
+
+<!-- 05 THE PROMISE -->
+<section class="sec" data-rev>
+  <div class="wrap">
+    <div class="num"><span class="n">[ 05 ]</span><span class="t">What we're building</span></div>
+    <h2 class="h h2">
+      <span class="ln"><span data-l>Hyper-functional.</span></span>
+      <span class="ln"><span data-l>For humans.</span></span>
+    </h2>
+    <p class="big" data-f style="margin-top:34px">Ancestral fruit. Modern science.</p>
+    <p class="p" data-f style="margin-top:14px">Products built to help people think, feel and live better — <b>starting with the ones whose minds run too fast for this world.</b></p>
+    <div class="pillars">
+      <div class="pillar" data-f><div class="k">I</div><div class="h h3">Sustainable<br>by design.</div></div>
+      <div class="pillar" data-f><div class="k">II</div><div class="h h3">Sacred<br>by origin.</div></div>
+      <div class="pillar" data-f><div class="k">III</div><div class="h h3">Futuristic<br>by ambition.</div></div>
     </div>
   </div>
 </section>
 
 <!-- 06 FOUNDER -->
-<section class="sec" data-io>
-  <div class="row">
-    <div class="founder">
-      <div>
-        <div class="eyebrow-row"><span class="n">[ 06 ]</span><span class="eb">The outsider</span></div>
-        <h2 class="h h2" style="margin-bottom:26px">
-          <span class="ln"><span>Built by a chef who</span></span>
-          <span class="ln"><span>spent years inside cacao —</span></span>
-          <span class="ln"><span>and couldn't drink</span></span>
-          <span class="ln"><span>another coffee.</span></span>
-        </h2>
-        <p class="sub fd">Trained in fine dining. Obsessed with process. Relentless about flavour.<br><b>You'll meet him before anyone else.</b></p>
-      </div>
-      <div class="pcard fd">
-        <img src="extra.jpg" alt="Under that cloth">
-        <div class="cap">It's under that cloth · 10.10</div>
+<section class="sec" data-rev>
+  <div class="wrap founder">
+    <div>
+      <div class="num"><span class="n">[ 06 ]</span><span class="t">The outsider</span></div>
+      <h2 class="h h2" style="margin-bottom:34px">
+        <span class="ln"><span data-l>Built by</span></span>
+        <span class="ln"><span data-l>an outsider.</span></span>
+      </h2>
+      <div class="letter">
+        <p data-f>I'm Mateo.</p>
+        <p data-f>School gave up on me early. I couldn't sit still, couldn't follow the slow room, and the report cards said what they said. So I went looking for the one place where a fast brain is an advantage. I found the kitchen.</p>
+        <p data-f>I started cleaning fish at five in the morning. Years later I was cooking in some of the best kitchens on earth. And one night, plating something perfect for twelve people who could afford it, I understood I was making beautiful things that changed nothing.</p>
+        <p data-f>So I left. Sold what I had. Went to the Peruvian jungle to learn about a fruit.</p>
+        <p data-f>A family there took me in. <b>The Tupayachis.</b> They grow cacao, they make some of the finest chocolate in the world, and they eat the whole fruit — the pulp, the strand, the husk. Everything the industry throws away, they had been eating at their table for generations. <b>That is where this started. Not in a lab. At their table.</b></p>
+        <p data-f>I'm not building a supplement company. I'm building the thing I needed, from the part of the fruit nobody wanted, with the people who taught me what it was.</p>
+        <p data-f><b>Everything I have is in this. There is no plan B.</b></p>
+        <p data-f>On 10.10, I'll show you the first one. Take a number. Walk in first.</p>
+        <div class="sig" data-f>— Mateo</div>
       </div>
     </div>
+    <div class="ph mask-r" data-par><img src="pod.jpg" alt="The fruit, opened"></div>
   </div>
 </section>
 
-<!-- 06 DOORS -->
-<section class="sec" data-io>
-  <div class="row">
-    <div class="eyebrow-row"><span class="n">[ 07 ]</span><span class="eb">Access</span></div>
+<!-- 07 THE DOORS -->
+<section class="sec" data-rev id="doors">
+  <div class="wrap">
+    <div class="num"><span class="n">[ 07 ]</span><span class="t">Access</span></div>
     <h2 class="h h2">
-      <span class="ln"><span>The list has</span></span>
-      <span class="ln"><span>three doors.</span></span>
+      <span class="ln"><span data-l>The list has</span></span>
+      <span class="ln"><span data-l>three doors.</span></span>
     </h2>
     <div class="doors">
-      <div class="door hot fd">
-        <div class="tag">The Ten · 10 spots only</div>
+      <div class="door hot" data-f>
+        <div class="tag">Door one · The Ten · 10 spots</div>
         <div class="h h3">The Ten</div>
-        <div class="pr">$199 · ONCE</div>
-        <div class="gwrap"><div class="gcard" data-gcard>
-          <div class="shine" data-shine></div>
-          <div class="in">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start"><span class="wm">MOSTLY</span><span class="ten">THE TEN</span></div>
-            <div class="row2"><span class="hold">FOUNDING · 48H DOOR</span><span class="num">Nº 01 / 10</span></div>
-          </div>
-        </div></div>
+        <div class="pr">$199 · ONCE · THE 48-HOUR DOOR</div>
+        <div class="gwrap"><div class="gcard" data-gcard><div class="shine" data-shine></div><div class="in"><div style="display:flex;justify-content:space-between"><span class="wm">MOSTLY</span><span class="ten">THE TEN</span></div><div class="row2"><span class="hold">FOUNDING · 48H DOOR</span><span class="nu">Nº 01 / 10</span></div></div></div></div>
         <ul>
-          <li><b>Everything in Founding</b>, plus the <b>48-hour door</b>: the first humans on earth to buy.</li>
+          <li><b>Presale opens for you 48 hours before anyone.</b> The first humans on earth to buy.</li>
           <li><b>A collector's piece from the valley, numbered 1/10.</b> Made by a named artisan. Ships by December 1.</li>
-          <li><b>One of the ten will receive something being woven in the valley right now.</b> We can't say more yet.</li>
-          <li><b>A private live session with the founder.</b> Ten seats, no recording.</li>
+          <li><b>One of the ten receives something being woven in the valley right now.</b> We can't say more yet.</li>
+          <li><b>A private live session with the founder</b> before launch. Ten seats, no recording.</li>
+          <li>Everything in The 500.</li>
         </ul>
-        <a class="btn" href="#ten">Claim one of ten</a>
+        <a class="btn" href="#ten" data-mag>Claim one of ten</a>
         <div class="under">When they're gone, they're gone</div>
       </div>
-      <div class="door fd">
-        <div class="tag">Founding member · 500 spots</div>
+      <div class="door" data-f>
+        <div class="tag">Door two · Founding · 500 spots</div>
         <div class="h h3">The 500</div>
-        <div class="pr">$49 · ONCE</div>
+        <div class="pr">$49 · ONCE · THE 24-HOUR DOOR</div>
         <ul>
-          <li><b>The Field Journal · Chuncho Vol. 01.</b> The real field notes. Digital, instant.</li>
-          <li><b>The Brew Masterclass</b> by a fine-dining chef, before the product exists.</li>
-          <li><b>Your name on Batch 001.</b> Printed with the first run. Forever.</li>
-          <li><b>Founder price locked for life</b> + the <b>24-hour door</b>.</li>
+          <li><b>Your number, forever.</b> Founding member Nº stamped on Batch 001. There will never be another first 500.</li>
+          <li><b>The founder price, locked.</b> The lowest price this will ever cost.</li>
+          <li><b>The Field Journal · Chuncho Vol. 01.</b> The real field notes: the valley, the fruit, the findings. Digital, instant.</li>
+          <li><b>The Brew Masterclass.</b> A fine-dining chef teaching you the full ritual, before the product exists.</li>
           <li>A private channel where we decide the next SKU with you.</li>
         </ul>
-        <a class="btn" href="#founding">Become a founder</a>
-        <div class="under">Numbered 001–500 · instant delivery</div>
+        <a class="btn" href="#founding" data-mag>Take Nº <span data-next>0313</span></a>
+        <div class="under">Founder price locked for every number</div>
       </div>
-      <div class="door fd">
-        <div class="tag">The list · free</div>
+      <div class="door" data-f>
+        <div class="tag">Door three · The list · free</div>
         <div class="h h3">The List</div>
-        <div class="pr">$0</div>
+        <div class="pr">$0 · THE 2-HOUR DOOR</div>
         <ul>
-          <li>A number in the line and the <b>2-hour door</b> before the public.</li>
-          <li><b>Bring people in, climb the list.</b> Top 10 recruiters get their first pot free and their name carved into Batch 001.</li>
-          <li>One email when it actually matters.</li>
+          <li>A number in the line. Presale opens for you 2 hours before the public.</li>
+          <li><b>Bring people in, climb the list.</b> The top 10 recruiters get their first pot free — and their name carved into Batch 001.</li>
+          <li>Three emails between now and the reveal. Nothing else.</li>
         </ul>
-        <a class="btn ghost" href="#top">Take a number</a>
-        <div class="under">First drop is small. It will not survive the doors.</div>
+        <form class="form" data-form method="POST" action="https://formsubmit.co/maateosanchezt@gmail.com" style="margin-top:auto">
+          <input type="email" name="email" placeholder="your@email.com" aria-label="Email" required style="min-width:0">
+          <input type="hidden" name="_captcha" value="false"><input type="hidden" name="_subject" value="MOSTLY waitlist signup"><input type="hidden" name="_next" value="https://mostly-landing.vercel.app/?joined=1">
+          <button class="btn ghost" type="submit" data-mag style="width:100%">Take a number</button>
+        </form>
+        <div class="under">Everyone else waits outside</div>
       </div>
+    </div>
+    <div class="doorsfoot">
+      <p class="big" data-f><b>Everyone else waits outside.</b><br>First drop is small. It will not survive the doors.</p>
     </div>
   </div>
 </section>
 
-<!-- 07 MONEY + ROADMAP -->
-<section class="sec" data-io>
-  <div class="row">
-    <div class="eyebrow-row"><span class="n">[ 08 ]</span><span class="eb">Where the money goes</span></div>
-    <h2 class="h h2"><span class="ln"><span>Every founding dollar</span></span><span class="ln"><span>splits two ways.</span></span></h2>
+<!-- 08 WHERE THE MONEY GOES + ROADMAP -->
+<section class="sec" data-rev>
+  <div class="wrap">
+    <div class="num"><span class="n">[ 08 ]</span><span class="t">Where the money goes</span></div>
+    <h2 class="h h2">
+      <span class="ln"><span data-l>Every founding dollar</span></span>
+      <span class="ln"><span data-l>splits two ways.</span></span>
+    </h2>
     <div class="two">
-      <div class="panel fd">
-        <span class="eb">I — The supply chain</span>
-        <div class="h h3">Names, not certificates</div>
-        <p>Direct relationships with the growers of the Peruvian valley. Paid above market. Published. Today that is one name: <b>Paytiti Peru, the Tupayachi family.</b> More will join it.</p>
-      </div>
-      <div class="panel fd">
-        <span class="eb">II — The next products</span>
-        <div class="h h3">Founder-led R&D</div>
-        <p>Every product developed in-house, from the parts of cacao that never become chocolate. <b>No outsourced lab. No white coats for the camera.</b></p>
-      </div>
+      <div data-f><span class="eb"><i>I</i>The supply chain</span><div class="h h3">Names, not certificates</div><p>Direct relationships with the growers of the Peruvian valley. Paid above market. Published. Today that is one name: <b>Paytiti Peru, the Tupayachi family.</b> More will join it.</p></div>
+      <div data-f><span class="eb"><i>II</i>The next products</span><div class="h h3">Founder-led R&D</div><p>Every product developed in-house, from the parts of cacao that never become chocolate. <b>No outsourced lab. No white coats for the camera.</b></p></div>
     </div>
-    <p class="foot-note fd" style="margin-top:18px">We don't do charity. We build markets. &nbsp;·&nbsp; Numbers published after Batch 001.</p>
+    <p class="micro" data-f style="margin-top:22px">We don't do charity. We build markets. &nbsp;·&nbsp; Numbers published after Batch 001.</p>
 
-    <div class="rtable fd">
-      <div class="rrow"><span>Stage</span><span>When</span><span>What enters the system</span><span style="text-align:right">In use</span></div>
-      <div class="rrow"><span class="st">STAGE 1</span><span class="st">TODAY</span><span class="what">nibs · shell</span><span class="pc">18%</span></div>
-      <div class="rrow"><span class="st">STAGE 2</span><span class="st">YEAR 2-3</span><span class="what">+ mucilage</span><span class="pc">30%</span></div>
-      <div class="rrow"><span class="st">STAGE 3</span><span class="st">YEAR 3-5</span><span class="what">+ pod husk</span><span class="pc">99%</span></div>
-      <div class="rrow"><span class="st">STAGE 4</span><span class="st">YEAR 5-7</span><span class="what">+ cocoa oat — the last 1%</span><span class="pc">100%</span></div>
-      <div class="rrow"><span class="st">STAGE 5</span><span class="st">YEAR 7-9</span><span class="what">the tree begins — leaf</span><span class="pc">+TREE</span></div>
-      <div class="rrow"><span class="st">STAGE 6</span><span class="st">YEAR 10+</span><span class="what">everything connected</span><span class="pc">ALL</span></div>
+    <div class="road" data-f>
+      <div class="num"><span class="n">10-year roadmap</span><span class="t">Their ceiling is our floor · every chocolate brand on earth, combined, uses ~20% of the cacao plant</span></div>
+      <div class="rrow h0"><span>Stage</span><span>When</span><span>What enters the system</span><span style="text-align:right">In use</span></div>
+      <div class="rrow"><span class="st">STAGE 1</span><span class="st">TODAY</span><span class="w">nibs · shell</span><span class="pc">18%</span></div>
+      <div class="rrow"><span class="st">STAGE 2</span><span class="st">YEAR 2-3</span><span class="w">+ mucilage</span><span class="pc">30%</span></div>
+      <div class="rrow"><span class="st">STAGE 3</span><span class="st">YEAR 3-5</span><span class="w">+ pod husk</span><span class="pc">99%</span></div>
+      <div class="rrow"><span class="st">STAGE 4</span><span class="st">YEAR 5-7</span><span class="w">+ cocoa oat — the last 1%</span><span class="pc">100%</span></div>
+      <div class="rrow"><span class="st">STAGE 5</span><span class="st">YEAR 7-9</span><span class="w">the tree begins — leaf</span><span class="pc">+TREE</span></div>
+      <div class="rrow"><span class="st">STAGE 6</span><span class="st">YEAR 10+</span><span class="w">everything connected</span><span class="pc">ALL</span></div>
+      <div class="rbar" data-rbar><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="micro" style="margin-top:14px">Every product moves the number. <b>The number is the mission.</b></p>
     </div>
-    <p class="foot-note fd" style="margin-top:16px">[04] &nbsp;Every chocolate brand on earth, combined, uses ~20% of the cacao plant. Their ceiling is our floor. Every product moves the number. <b>The number is the mission.</b></p>
   </div>
 </section>
 
-<!-- 08 CLOSE -->
-<section class="sec" data-io id="top">
-  <div class="row">
-    <div class="eyebrow-row"><span class="n">[ 09 ]</span><span class="eb">The reveal</span></div>
-    <h2 class="h h2"><span class="ln"><span>The cloth</span></span><span class="ln"><span>comes off.</span></span></h2>
-    <div class="cd fd">
-      <div><div class="v" data-d>00</div><div class="l">Days</div></div>
-      <div><div class="v" data-h>00</div><div class="l">Hours</div></div>
-      <div><div class="v" data-m>00</div><div class="l">Min</div></div>
-      <div><div class="v" data-s>00</div><div class="l">Sec</div></div>
+<!-- 09 CLOSE -->
+<section class="close" data-rev>
+  <div class="media"><video autoplay muted loop playsinline poster="veil.jpg"><source src="veil.mp4" type="video/mp4"></video></div>
+  <div class="wrap">
+    <div class="num"><span class="n">[ 09 ]</span><span class="t">The reveal</span></div>
+    <h2 class="h h2">
+      <span class="ln"><span data-l>10.10 —</span></span>
+      <span class="ln"><span data-l>the cloth comes off.</span></span>
+    </h2>
+    <div class="cdm" data-f>
+      <div><div class="v" data-cd-d>00</div><div class="l">Days</div></div>
+      <div><div class="v" data-cd-h>00</div><div class="l">Hours</div></div>
+      <div><div class="v" data-cd-m>00</div><div class="l">Min</div></div>
+      <div><div class="v" data-cd-s>00</div><div class="l">Sec</div></div>
     </div>
-    <p class="sub fd" style="margin-bottom:30px">Some will see it that day and call it a product.<br><b>You'll already have a number on it.</b></p>
-    <form class="form fd" data-form method="POST" action="https://formsubmit.co/maateosanchezt@gmail.com">
-      <input type="email" name="email" placeholder="Enter your email" aria-label="Email" required><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_subject" value="MOSTLY waitlist signup"><input type="hidden" name="_next" value="https://mostly-landing.vercel.app/?joined=1">
-      <button type="submit">Be inside</button>
+    <p class="big" data-f>Some will see it that day and call it a product.<br><b>You'll already have a number on it.</b></p>
+    <form class="form" data-f data-form method="POST" action="https://formsubmit.co/maateosanchezt@gmail.com" style="margin-top:32px">
+      <input type="email" name="email" placeholder="your@email.com" aria-label="Email" required>
+      <input type="hidden" name="_captcha" value="false"><input type="hidden" name="_subject" value="MOSTLY waitlist signup"><input type="hidden" name="_next" value="https://mostly-landing.vercel.app/?joined=1">
+      <button class="btn" type="submit" data-mag>Be inside →</button>
     </form>
   </div>
 </section>
@@ -526,152 +559,134 @@ footer a{color:var(--dim);text-decoration:none;font-size:11.5px;letter-spacing:.
 </main>
 
 <footer>
-  <div class="row">
-    <div>
-      <div class="logo" style="font-size:16px;margin-bottom:6px">MOSTLY</div>
-      <div class="foot-note">The Non-Chocolate Cacao Brand · Ancestral fruit. Modern science.</div>
-    </div>
-    <div style="display:flex;gap:26px"><a href="#">Instagram</a><a href="#">Privacy</a></div>
+  <div class="wm">MOSTLY</div>
+  <div class="wrap row">
+    <div class="micro">The Non-Chocolate Cacao Brand · Ancestral fruit. Modern science.</div>
+    <div style="display:flex;gap:26px"><a href="https://instagram.com/mostly">Instagram</a><a href="#">Privacy</a></div>
   </div>
 </footer>
 
-<script>
-/* reveals */
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -10% 0px',threshold:.05});
-document.querySelectorAll('[data-io]').forEach(function(el){io.observe(el)});
-
-/* countdown */
-(function(){var T=new Date('2026-10-10T09:00:00-04:00').getTime();
-function f(){var t=Math.max(0,T-Date.now());
-document.querySelector('[data-d]').textContent=String(Math.floor(t/864e5)).padStart(2,'0');
-document.querySelector('[data-h]').textContent=String(Math.floor(t%864e5/36e5)).padStart(2,'0');
-document.querySelector('[data-m]').textContent=String(Math.floor(t%36e5/6e4)).padStart(2,'0');
-document.querySelector('[data-s]').textContent=String(Math.floor(t%6e4/1e3)).padStart(2,'0');}
-f();setInterval(f,1000);})();
-
-/* beam parallax */
-(function(){var b=document.querySelector('[data-beam]'),t=false;
-addEventListener('scroll',function(){if(t)return;t=true;requestAnimationFrame(function(){
-b.style.transform='rotate(7deg) translateY('+(scrollY*0.04)+'px)';t=false;});},{passive:true});})();
-
-/* SCROLL-SCRUB video (high response) */
-(function(){
-  var wrap=document.querySelector('[data-scrub]'); if(!wrap) return;
-  var v=wrap.querySelector('[data-scrub-video]');
-  var steps=wrap.querySelectorAll('[data-step]');
-  var target=0, current=0, raf=null;
-  function onScroll(){
-    var r=wrap.getBoundingClientRect();
-    var total=r.height-innerHeight;
-    var p=Math.min(1,Math.max(0,-r.top/total));
-    target=p;
-    steps.forEach(function(s,i){ s.classList.toggle('on', p > (i+0.5)/(steps.length+1)); });
-    if(!raf) raf=requestAnimationFrame(tick);
-  }
-  function tick(){
-    current += (target-current)*0.12;
-    if(v.duration) v.currentTime = current * (v.duration-0.05);
-    if(Math.abs(target-current)>0.001) raf=requestAnimationFrame(tick); else raf=null;
-  }
-  v.addEventListener('loadedmetadata',onScroll);
-  addEventListener('scroll',onScroll,{passive:true});
-  onScroll();
-})();
-
-/* anatomy hover sync */
-(function(){
-  var hots=document.querySelectorAll('[data-hot]'), rows=document.querySelectorAll('[data-layer]');
-  function set(i){
-    hots.forEach(function(h){h.classList.toggle('on', h.getAttribute('data-hot')==i)});
-    rows.forEach(function(r){r.classList.toggle('on', r.getAttribute('data-layer')==i)});
-  }
-  rows.forEach(function(r){ r.addEventListener('mouseenter',function(){set(r.getAttribute('data-layer'))}); r.addEventListener('click',function(){set(r.getAttribute('data-layer'))}); });
-  hots.forEach(function(h){ h.addEventListener('mouseenter',function(){set(h.getAttribute('data-hot'))}); h.addEventListener('click',function(){set(h.getAttribute('data-hot'))}); });
-  set(3);
-})();
-/* gold card tilt + shine */
-(function(){
-  var c=document.querySelector('[data-gcard]'); if(!c) return;
-  var sh=c.querySelector('[data-shine]');
-  if(matchMedia('(pointer:fine)').matches){
-    c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-      c.style.transform='rotateY('+x*14+'deg) rotateX('+y*-12+'deg)';
-      sh.style.transform='translateX('+(x*130)+'%)';});
-    c.addEventListener('mouseleave',function(){c.style.transform='';sh.style.transform='translateX(-70%)';});
-  } else { c.style.transform='rotateY(-8deg) rotateX(4deg)'; }
-})();
-/* forms: validate, then real POST */
-document.querySelectorAll('[data-form]').forEach(function(f){f.addEventListener('submit',function(e){var i=f.querySelector('input[type=email]');if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(i.value.trim())){e.preventDefault();i.focus();return;}var b=f.querySelector('button');b.textContent='Securing your number…';});});
-if(location.search.indexOf('joined=1')>-1){var bar=document.createElement('div');bar.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99;background:#E9E1CE;color:#0D0B09;font-family:Space Mono,monospace;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:13px';bar.textContent="You're in. Your number arrives by email before the reveal.";document.body.appendChild(bar);}
-</script>
 <script src="gsap.min.js"></script>
 <script src="ScrollTrigger.min.js"></script>
 <script src="lenis.min.js"></script>
 <script>
-/* ══ PREMIUM MOTION LAYER (GSAP + Lenis) ══ */
 (function(){
-  if(!(window.gsap&&window.ScrollTrigger)) return;
-  gsap.registerPlugin(ScrollTrigger);
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduced) return;
+  var fine = matchMedia('(pointer:fine)').matches;
+  var G = window.gsap, ST = window.ScrollTrigger;
+  if(G && ST) G.registerPlugin(ST);
 
-  /* GSAP takes ownership: neutralize CSS pre-hidden states */
-  var st=document.createElement('style');
-  st.textContent='.gsap-on .ln>span{transition:none!important}.gsap-on .fd{transition:none!important}';
-  document.head.appendChild(st);
-  document.body.classList.add('gsap-on');
-  document.querySelectorAll('[data-io]').forEach(function(e){e.classList.add('in')});
+  /* ── preloader ── */
+  var pre=document.querySelector('[data-pre]'), pn=document.querySelector('[data-pre-n]');
+  var heroTL;
+  function heroIn(){
+    if(!G){ document.querySelectorAll('[data-h]').forEach(function(e){e.style.opacity=1}); return; }
+    heroTL=G.timeline({defaults:{ease:'expo.out'}});
+    heroTL.from('.hero-l .ln > span',{yPercent:112,duration:1.2,stagger:.1},0)
+          .from('.hero-l [data-h]:not(.h1 span)',{y:22,opacity:0,duration:1,stagger:.07},.35)
+          .from('.hero-media',{opacity:0,scale:1.05,duration:1.8,ease:'power2.out'},0)
+          .from('.hero-r [data-h]',{y:22,opacity:0,duration:1},.7);
+  }
+  if(pre && G && !reduced){
+    var o={v:0};
+    G.to(o,{v:100,duration:1.25,ease:'power2.inOut',onUpdate:function(){pn.textContent=String(Math.round(o.v)).padStart(2,'0')},
+      onComplete:function(){G.to(pre,{yPercent:-100,duration:.9,ease:'expo.inOut',onComplete:function(){pre.remove()}}); heroIn();}});
+  } else { if(pre) pre.remove(); heroIn(); }
 
-  /* smooth scroll */
-  if(window.Lenis){
-    var lenis = new Lenis({duration:1.05, smoothWheel:true});
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(function(t){ lenis.raf(t*1000); });
-    gsap.ticker.lagSmoothing(0);
+  /* ── smooth scroll ── */
+  if(window.Lenis && G && !reduced){
+    var lenis=new Lenis({duration:1.1,smoothWheel:true});
+    lenis.on('scroll',ST.update);
+    G.ticker.add(function(t){lenis.raf(t*1000)}); G.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href');var el=id.length>1&&document.querySelector(id);if(el){e.preventDefault();lenis.scrollTo(el,{offset:-40});}});});
   }
 
-  /* hero entrance */
-  gsap.timeline({defaults:{ease:'power4.out'}})
-    .from('.hero-l .ln > span',{yPercent:115,duration:1.15,stagger:.09},.15)
-    .from('.hero-l .sub,.hero-l .boxline,.hero-l .form,.hero-l .micro',{y:18,opacity:0,duration:.9,stagger:.08},'-=.6')
-    .from('.hero-r',{opacity:0,scale:1.04,duration:1.6,ease:'power2.out'},0);
-
-  /* parallax on photo cards + bands */
-  document.querySelectorAll('.pcard img,.band img').forEach(function(im){
-    gsap.fromTo(im,{yPercent:-6},{yPercent:6,ease:'none',
-      scrollTrigger:{trigger:im,start:'top bottom',end:'bottom top',scrub:true}});
-  });
-
-  /* slabs stagger in */
-  gsap.utils.toArray('.slabs').forEach(function(g){
-    gsap.from(g.children,{y:60,opacity:0,duration:1,stagger:.12,ease:'power3.out',
-      scrollTrigger:{trigger:g,start:'top 78%'}});
-  });
-
-  /* roaster scrub via ScrollTrigger (replaces rAF version) */
-  var sv=document.querySelector('[data-scrub-video]');
-  if(sv){
-    var setT;
-    function bind(){
-      if(!sv.duration) return;
-      setT = gsap.quickTo({t:0},'t',{duration:.35,ease:'none',onUpdate:function(){}});
-      ScrollTrigger.create({trigger:'[data-scrub]',start:'top top',end:'bottom bottom',scrub:.4,
-        onUpdate:function(st){ if(sv.duration) sv.currentTime = st.progress*(sv.duration-.05); }});
-    }
-    if(sv.readyState>0) bind(); else sv.addEventListener('loadedmetadata',bind);
+  /* ── cursor ── */
+  var cur=document.querySelector('[data-cur]');
+  if(cur && fine){
+    var cx=innerWidth/2,cy=innerHeight/2,tx=cx,ty=cy;
+    addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY},{passive:true});
+    (function loop(){cx+=(tx-cx)*.22;cy+=(ty-cy)*.22;cur.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';requestAnimationFrame(loop)})();
+    document.querySelectorAll('a,button,input,.door,.gcard').forEach(function(el){el.addEventListener('mouseenter',function(){cur.classList.add('big')});el.addEventListener('mouseleave',function(){cur.classList.remove('big')});});
   }
 
-  /* anatomy: pin visual while rows scroll (desktop) */
-  if(innerWidth>1020){
-    var av=document.querySelector('[data-anat-visual]');
-    if(av){ ScrollTrigger.create({trigger:av,start:'top 90px',endTrigger:'.averdict',end:'bottom 85%',pin:av,pinSpacing:false}); }
+  /* ── magnetic buttons ── */
+  if(fine && G){
+    document.querySelectorAll('[data-mag]').forEach(function(b){
+      b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();G.to(b,{x:(e.clientX-r.left-r.width/2)*.28,y:(e.clientY-r.top-r.height/2)*.4,duration:.4,ease:'power3.out'})});
+      b.addEventListener('mouseleave',function(){G.to(b,{x:0,y:0,duration:.7,ease:'elastic.out(1,.45)'})});
+    });
   }
 
-  /* big headers slight tracking-in */
-  gsap.utils.toArray('.sec .h2').forEach(function(h){
-    gsap.from(h,{letterSpacing:'.06em',opacity:.001,duration:1.1,ease:'power3.out',
-      scrollTrigger:{trigger:h,start:'top 85%'}});
+  /* ── countdown ── */
+  var T=new Date('2026-10-10T09:00:00-04:00').getTime();
+  function pad(n){return String(n).padStart(2,'0')}
+  function cd(){var t=Math.max(0,T-Date.now());
+    var d=Math.floor(t/864e5),h=Math.floor(t%864e5/36e5),m=Math.floor(t%36e5/6e4),s=Math.floor(t%6e4/1e3);
+    document.querySelectorAll('[data-cd-d]').forEach(function(e){e.textContent=pad(d)});
+    document.querySelectorAll('[data-cd-h]').forEach(function(e){e.textContent=pad(h)});
+    document.querySelectorAll('[data-cd-m]').forEach(function(e){e.textContent=pad(m)});
+    document.querySelectorAll('[data-cd-s]').forEach(function(e){e.textContent=pad(s)});}
+  cd(); setInterval(cd,1000);
+
+  /* ── ticks ── */
+  var taken=312, cap=500, tk=document.querySelector('[data-ticks]');
+  if(tk){for(var i=0;i<40;i++){var t=document.createElement('i');if(i<Math.round(40*taken/cap))t.className='on';tk.appendChild(t)}}
+
+  /* ── progress + beam ── */
+  var prog=document.querySelector('[data-prog]'), beam=document.querySelector('[data-beam]');
+  if(G&&ST){ ST.create({start:0,end:'max',onUpdate:function(s){prog.style.transform='scaleX('+s.progress+')'; if(beam) beam.style.transform='rotate(8deg) translateY('+(s.progress*220)+'px)';}}); }
+
+  if(!G||!ST||reduced){ document.querySelectorAll('[data-l],[data-f],[data-verdict]').forEach(function(e){e.style.opacity=1}); return; }
+
+  /* ── section reveals ── */
+  document.querySelectorAll('[data-rev]').forEach(function(sec){
+    var lines=sec.querySelectorAll('[data-l]'), fades=sec.querySelectorAll('[data-f]');
+    if(lines.length) G.from(lines,{yPercent:112,duration:1.1,stagger:.09,ease:'expo.out',scrollTrigger:{trigger:sec,start:'top 78%'}});
+    if(fades.length) G.from(fades,{y:26,opacity:0,duration:1,stagger:.08,ease:'power3.out',scrollTrigger:{trigger:sec,start:'top 72%'}});
   });
+
+  /* ── photo parallax ── */
+  document.querySelectorAll('[data-par] img').forEach(function(im){
+    G.fromTo(im,{yPercent:-7,scale:1.08},{yPercent:7,scale:1.08,ease:'none',scrollTrigger:{trigger:im,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+
+  /* ── crime scrub ── */
+  var sv=document.querySelector('[data-scrub-video]'), steps=document.querySelectorAll('[data-step]');
+  ST.create({trigger:'[data-scrub]',start:'top top',end:'bottom bottom',scrub:.35,
+    onUpdate:function(s){ if(sv.duration) sv.currentTime=s.progress*(sv.duration-.05);
+      steps.forEach(function(el,i){ el.classList.toggle('on', s.progress > (i+.4)/(steps.length+.6)); }); }});
+
+  /* ── anatomy exploded ── */
+  var anat=document.querySelector('[data-anat]');
+  if(anat && innerWidth>1020){
+    var slices=anat.querySelectorAll('[data-slice]'), layers=anat.querySelectorAll('[data-layer]'), verdict=anat.querySelector('[data-verdict]');
+    var tl=G.timeline({scrollTrigger:{trigger:anat,start:'top top',end:'bottom bottom',scrub:.6}});
+    tl.to(slices[0],{y:'-16vh',rotateX:9,z:50,ease:'none'},0)
+      .to(slices[1],{y:'-5vh',rotateX:3,z:25,ease:'none'},0)
+      .to(slices[2],{y:'5vh',rotateX:-3,z:25,ease:'none'},0)
+      .to(slices[3],{y:'16vh',rotateX:-9,z:50,ease:'none'},0)
+      .to(verdict,{opacity:1,duration:.2},.75);
+    ST.create({trigger:anat,start:'top top',end:'bottom bottom',onUpdate:function(s){
+      var idx=Math.min(3,Math.floor(s.progress*4.2));
+      layers.forEach(function(l,i){l.classList.toggle('on',i<=idx);l.classList.toggle('now',i===idx)});
+    }});
+  } else if(anat){ anat.querySelectorAll('[data-layer]').forEach(function(l){l.classList.add('on','now')}); var v=anat.querySelector('[data-verdict]'); if(v) v.style.opacity=1; }
+
+  /* ── roadmap bar ── */
+  var rb=document.querySelector('[data-rbar]');
+  if(rb) G.to(rb.children,{width:'16.666%',duration:1.1,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:rb,start:'top 85%'}});
+
+  /* ── gold card ── */
+  var gc=document.querySelector('[data-gcard]');
+  if(gc){ var sh=gc.querySelector('[data-shine]');
+    if(fine){ gc.addEventListener('mousemove',function(e){var r=gc.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;gc.style.transform='rotateY('+x*14+'deg) rotateX('+y*-12+'deg)';sh.style.transform='translateX('+(x*130)+'%)';});
+      gc.addEventListener('mouseleave',function(){gc.style.transform='';sh.style.transform='translateX(-70%)';}); }
+    else gc.style.transform='rotateY(-8deg) rotateX(4deg)'; }
+
+  /* ── forms ── */
+  document.querySelectorAll('[data-form]').forEach(function(f){f.addEventListener('submit',function(e){var i=f.querySelector('input[type=email]');if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(i.value.trim())){e.preventDefault();i.focus();return;}f.querySelector('button').textContent='Securing your number…';});});
+  if(location.search.indexOf('joined=1')>-1){var j=document.querySelector('[data-joined]');if(j)j.style.display='block';}
 })();
 </script>
 </body></html>
