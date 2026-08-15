@@ -217,7 +217,7 @@ main{position:relative;z-index:1}
 
 
 /* ===== 04 LAB · collage on real archive paper, with notes and arrows ===== */
-.labx{position:relative;margin-top:clamp(34px,4.4vw,64px);height:clamp(720px,68vw,980px)}
+.labx{position:relative;margin-top:clamp(34px,4.4vw,64px);height:clamp(860px,76vw,1120px)}
 .labx .grain{position:absolute;inset:0;background:url(paper.webp) center/120% auto;opacity:.045;
   -webkit-mask-image:radial-gradient(80% 70% at 50% 45%,#000 40%,transparent 100%);mask-image:radial-gradient(80% 70% at 50% 45%,#000 40%,transparent 100%);pointer-events:none}
 /* a print = real aged mount, hard edge, no fade */
@@ -230,18 +230,29 @@ main{position:relative;z-index:1}
 .labx .note.dim{color:var(--cream2)}
 .arw{position:absolute;width:clamp(90px,8vw,130px);height:auto;stroke:rgba(212,178,92,.75);stroke-width:1.4;fill:none;opacity:.9}
 .stampbox{position:absolute;border:1.5px solid rgba(212,178,92,.7);color:rgba(212,178,92,.9);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;padding:9px 14px;transform:rotate(var(--r,-7deg));border-radius:3px}
-.p1{left:0;top:2%;width:27%;aspect-ratio:3/4;--r:-3deg}
-.p2{left:31%;top:20%;width:24%;aspect-ratio:4/3;--r:2.5deg}
-.p3{right:3%;top:1%;width:23%;aspect-ratio:3/4;--r:4deg}
-.p4{left:5%;bottom:1%;width:25%;aspect-ratio:4/3;--r:-2deg}
-.p5{right:8%;bottom:4%;width:20%;aspect-ratio:3/4;--r:-5deg}
+.p1{left:0;top:1%;width:26%;aspect-ratio:3/4;--r:-3deg}
+.p2{left:2%;top:30%;width:25%;aspect-ratio:3/4;--r:2.5deg}
+.p3{right:2%;top:1%;width:24%;aspect-ratio:4/3;--r:3.5deg}
+.p4{left:33%;top:34%;width:22%;aspect-ratio:4/3;--r:-2deg}
+.p5{right:4%;bottom:2%;width:26%;aspect-ratio:3/4;--r:-4deg}
 .n1{left:30%;top:2%;--r:-1.5deg}
 .n2{left:1%;top:52%;--r:1deg}
 .n3{right:1%;top:47%;--r:-2deg;text-align:right}
 .n4{left:35%;bottom:6%;--r:1.5deg}
-.a1{left:26%;top:13%}
-.a2{right:24%;top:33%}
-.s1{right:34%;top:70%;--r:-7deg}
+.a1{left:25%;top:12%}
+.a2{right:26%;top:16%}
+.s1{left:2%;bottom:6%;--r:-7deg}
+
+/* leads: an arrow has to arrive somewhere. these are where they land. */
+.labx .lead{position:absolute;max-width:30ch}
+.labx .lead .lk{display:block;font-family:var(--disp);font-size:clamp(15px,1.25vw,20px);color:var(--gold);letter-spacing:.04em;margin-bottom:7px}
+.labx .lead p{font-size:12.5px;line-height:1.72;color:var(--cream2);margin:0}
+.labx .lead p b{color:var(--cream);font-weight:400}
+.l1{left:31%;top:3%}
+.l2{left:30%;top:60%}
+.l3{right:1%;top:28%}
+.l4{left:30%;bottom:1%}
+
 /* facts row — hairlines, no boxes */
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,64px);margin-top:clamp(40px,5vw,76px)}
 .fact{position:relative;padding-top:22px}
@@ -258,7 +269,7 @@ main{position:relative;z-index:1}
 .biotx p b{color:var(--cream);font-weight:400}
 @media(max-width:1020px){
   .labx{height:auto;display:flex;flex-direction:column;gap:22px}
-  .labx .print,.labx .note,.arw,.stampbox{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%;transform:none}
+  .labx .print,.labx .note,.labx .lead,.arw,.stampbox{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%;transform:none}
   .labx .print{aspect-ratio:4/3}
   .arw{display:none}.stampbox{align-self:flex-start;width:auto}
   .facts{grid-template-columns:1fr;gap:26px}
@@ -596,20 +607,22 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
 
     <div class="labx" data-col>
       <div class="grain"></div>
-      <div class="print p1" data-par><img src="r_pulp.webp" alt="A cacao pod opened by hand, white pulp inside" loading="lazy" decoding="async"><span class="cap">the pulp, in hand · Paytiti</span></div>
-      <p class="note n1">Paytiti · Valle de la Convención.<br>Six hours from Cusco by mountain road.</p>
-      <svg class="arw a1" viewBox="0 0 120 60" aria-hidden="true"><path d="M4 8 C 40 4, 84 18, 112 46" fill="none"/><path d="M112 46 l-13 -3 M112 46 l-2 -13" fill="none"/></svg>
 
-      <div class="print p2" data-par><img src="r_ferment.webp" alt="Wooden fermentation boxes lined with banana leaf" loading="lazy" decoding="async"><span class="cap">fermentation boxes · banana leaf</span></div>
-      <p class="note dim n2">4 to 6 days. Alcoholic phase first,<br>then acetic — the core hits 45-50 °C.</p>
+      <div class="print p1" data-par><img src="x_trunk.webp" alt="A cacao pod growing straight out of the trunk" loading="lazy" decoding="async"><span class="cap">it grows out of the trunk</span></div>
+      <svg class="arw a1" viewBox="0 0 130 70" aria-hidden="true"><path d="M6 10 C 46 6, 92 22, 124 56"/><path d="M124 56 l-14 -3 M124 56 l-2 -14"/></svg>
+      <div class="lead l1"><span class="lk">Cauliflory</span><p>Flowers and fruit come straight off the old wood, not the branch tips. Jackfruit does it. Durian does it. <b>It means the tree can carry a fruit heavier than any twig would hold.</b></p></div>
 
-      <div class="print p3" data-par><img src="r_scoby.webp" alt="Jar of cacao SCOBY, labelled and dated" loading="lazy" decoding="async"><span class="cap">SCOBY · dated, logged</span></div>
-      <p class="note n3">the same microbe that makes<br>nata de coco. fed on cacao.</p>
-      <svg class="arw a2" viewBox="0 0 120 60" aria-hidden="true"><path d="M116 10 C 78 6, 34 20, 8 48" fill="none"/><path d="M8 48 l13 -3 M8 48 l2 -13" fill="none"/></svg>
+      <div class="print p2" data-par><img src="r_pulp.webp" alt="An opened cacao pod, white pulp in hand" loading="lazy" decoding="async"><span class="cap">the pulp · Paytiti</span></div>
+      <div class="lead l2"><span class="lk">The part that never leaves</span><p>Sweet white flesh around every seed. The families eat it first, and the rest drains into the soil during fermentation. <b>We asked a simpler question: what if it fed something instead?</b></p></div>
 
-      <div class="print p4" data-par><img src="r_bags.webp" alt="Labelled vacuum sample bags" loading="lazy" decoding="async"><span class="cap">every batch, labelled</span></div>
-      <div class="print p5" data-par><img src="r_spirit.webp" alt="Bottle of cacao distillate" loading="lazy" decoding="async"><span class="cap">cacao distillate</span></div>
-      <p class="note dim n4">cascarilla brews like coffee.<br>the strand tastes like oat milk (!!)</p>
+      <div class="print p3" data-par><img src="x_lyo.webp" alt="Freeze-dried mucilage in a tray" loading="lazy" decoding="async"><span class="cap">mucilage, freeze-dried</span></div>
+      <svg class="arw a2" viewBox="0 0 130 70" aria-hidden="true"><path d="M124 12 C 84 8, 38 24, 8 58"/><path d="M8 58 l14 -3 M8 58 l2 -14"/></svg>
+      <div class="lead l3"><span class="lk">Stabilised in the field</span><p>Drained, frozen, flown, freeze-dried. Get it stable and the harvest stops being a deadline. <b>That single step is what turns a waste stream into a supply chain.</b></p></div>
+
+      <div class="print p4" data-par><img src="x_ph.webp" alt="pH meter kit" loading="lazy" decoding="async"><span class="cap">pH 3.76 · 15.8 °Brix · 30.1 °C</span></div>
+      <div class="print p5" data-par><img src="x_panel.webp" alt="Labelled sample bars laid out for a tasting panel" loading="lazy" decoding="async"><span class="cap">35 people, blind</span></div>
+      <div class="lead l4"><span class="lk">Measured, not felt</span><p>Every batch logged, coded and put in front of a panel who did not know what they were eating. <b>The numbers we did not like got published too.</b></p></div>
+
       <span class="stampbox s1">Field journal · Vol. 01</span>
     </div>
 
@@ -620,7 +633,7 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
     </div>
 
     <div class="two bio" data-f>
-      <div class="biofig"><img src="biomat.webp" alt="Bacterial cellulose film, pressed cacao-shell panels and vegetal leather swatches" loading="lazy" decoding="async"></div>
+      <div class="biofig"><img src="x_leather.webp" alt="Vegetal leather grown from cacao, folded to show it bends like hide" loading="lazy" decoding="async"></div>
       <div class="biotx">
         <span class="eb">The horizon</span>
         <div class="h h3">The fruit can become the packaging.</div>
