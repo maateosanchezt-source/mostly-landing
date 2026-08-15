@@ -5,7 +5,7 @@
 <meta property="og:title" content="MOSTLY — Chocolate was never the point.">
 <meta property="og:description" content="The Non-Chocolate Cacao Brand. Reveal 10.10. Take a number.">
 <meta property="og:image" content="https://mostly-landing.vercel.app/veil.webp">
-<meta name="theme-color" content="#060504">
+<meta name="theme-color" content="#040406">
 <link rel="preload" href="anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="space-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="veil.webp" as="image">
@@ -16,7 +16,7 @@
 @font-face{font-family:'Caveat';src:url('caveat-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
 @font-face{font-family:'Caveat';src:url('caveat-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
 
-:root{--bg:#060504;--cream:#EAE2CF;--cream2:#C4BBA4;--dim:#948C79;--faint:rgba(234,226,207,.10);--gold:#d4b25c;
+:root{--bg:#040406;--cream:#EAE2CF;--cream2:#C4BBA4;--dim:#948C79;--faint:rgba(234,226,207,.10);--gold:#d4b25c;--barh:70px;
 --disp:'Anton',Impact,sans-serif;--mono:'Space Mono',ui-monospace,monospace;--hand:'Caveat',cursive}
 *{margin:0;padding:0;box-sizing:border-box}
 html{background:var(--bg);scroll-behavior:smooth;overflow-x:clip}
@@ -109,8 +109,8 @@ main{position:relative;z-index:1}
 .micro b{color:var(--cream);font-weight:400}
 
 /* HERO */
-.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.12fr .88fr;align-items:end;overflow:hidden}
-.hero-media{position:absolute;inset:0 0 0 36%;z-index:0}
+.hero{position:relative;min-height:100svh;padding-top:var(--barh);display:grid;grid-template-columns:1.12fr .88fr;align-items:end;overflow:hidden}
+.hero-media{position:absolute;inset:var(--barh) 0 0 36%;z-index:0}
 .hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 36%;
 -webkit-mask-image:radial-gradient(62% 58% at 60% 42%,#000 28%,rgba(0,0,0,.5) 62%,transparent 100%);mask-image:radial-gradient(62% 58% at 60% 42%,#000 28%,rgba(0,0,0,.5) 62%,transparent 100%)}
 .hero-l{position:relative;z-index:2;min-width:0;padding:126px clamp(20px,4vw,64px) clamp(56px,7vh,100px)}
@@ -129,7 +129,7 @@ main{position:relative;z-index:1}
 .al-c .hook{justify-content:center}.al-r .hook{justify-content:flex-end}
 .hero-r{position:relative;z-index:2;min-width:0;padding:0 clamp(20px,4vw,64px) clamp(56px,7vh,100px);display:flex;justify-content:flex-end}
 .cd{text-align:right;position:relative;padding:26px 0 0}
-.cd::before{content:"";position:absolute;inset:-40px -60px -60px -80px;background:radial-gradient(60% 70% at 70% 60%,rgba(6,5,4,.92),rgba(6,5,4,.55) 55%,transparent 80%);z-index:-1;pointer-events:none}
+.cd::before{content:"";position:absolute;inset:-40px -60px -60px -80px;background:radial-gradient(60% 70% at 70% 60%,rgba(4,4,6,.92),rgba(4,4,6,.55) 55%,transparent 80%);z-index:-1;pointer-events:none}
 .cd .lab{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream2);margin-bottom:10px}
 .cd .row{display:flex;gap:clamp(10px,1.4vw,22px);justify-content:flex-end;align-items:baseline}
 .cd .u{text-align:center}
@@ -147,17 +147,18 @@ main{position:relative;z-index:1}
 .band{position:relative;overflow:hidden}
 .band .bg{position:absolute;inset:0;z-index:0}
 .band .bg video,.band .bg img{width:100%;height:100%;object-fit:cover}
-.band .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0,rgba(6,5,4,0) 18%,rgba(6,5,4,0) 82%,var(--bg) 100%)}
+.band .bg{mix-blend-mode:screen}
+.band .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0,rgba(4,4,6,0) 26%,rgba(4,4,6,0) 74%,var(--bg) 100%)}
 .band .in{position:relative;z-index:2}
 .crime{min-height:100svh;display:flex;align-items:flex-end}
 .crime .bg video{object-position:60% 40%}
-.crime .bg::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(6,5,4,.86) 0%,rgba(6,5,4,.5) 36%,rgba(6,5,4,0) 62%)}
+.crime .bg::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(4,4,6,.86) 0%,rgba(4,4,6,.5) 36%,rgba(4,4,6,0) 62%)}
 .crime .in{padding:clamp(80px,12vh,140px) 0 clamp(60px,10vh,110px)}
 .lines p{font-size:clamp(15px,1.3vw,19px);color:var(--cream2);margin:9px 0}
 .lines p.last{font-weight:700;color:#fff}
 .beansband{min-height:78svh;display:flex;align-items:center}
 .beansband .bg img{object-position:50% 45%}
-.beansband .bg::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(70% 70% at 50% 50%,rgba(6,5,4,.2),rgba(6,5,4,.75))}
+.beansband .bg::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(70% 70% at 50% 50%,rgba(4,4,6,.2),rgba(4,4,6,.75))}
 .beansband .in{padding:clamp(80px,12vh,140px) 0}
 .beansband .big{max-width:30ch;font-size:clamp(24px,2.6vw,42px)}
 
@@ -179,15 +180,15 @@ main{position:relative;z-index:1}
 .anat{display:grid;grid-template-columns:1fr minmax(260px,380px) 1fr;gap:clamp(24px,4vw,70px);align-items:center;margin-top:clamp(34px,4.4vw,68px)}
 .anat .fig{position:relative}
 .anat .fig img{width:100%;height:auto;display:block;filter:contrast(1.03) saturate(1.04);
-  -webkit-mask-image:radial-gradient(78% 74% at 50% 50%,#000 58%,rgba(0,0,0,.5) 84%,transparent 100%);
-  mask-image:radial-gradient(78% 74% at 50% 50%,#000 58%,rgba(0,0,0,.5) 84%,transparent 100%)}
+  
+  mix-blend-mode:screen}
 .figcap{margin-top:16px;text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
-.pin{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--cream);transform:translate(-50%,-50%);box-shadow:0 0 0 5px rgba(6,5,4,.55),0 0 0 6px rgba(234,226,207,.35),0 0 22px 6px rgba(234,226,207,.18);cursor:default}
+.pin{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--cream);transform:translate(-50%,-50%);box-shadow:0 0 0 5px rgba(4,4,6,.55),0 0 0 6px rgba(234,226,207,.35),0 0 22px 6px rgba(234,226,207,.18);cursor:default}
 .pin::after{content:attr(data-n);position:absolute;left:50%;top:-28px;transform:translateX(-50%);font-family:var(--disp);font-size:15px;letter-spacing:.06em;color:var(--cream);text-shadow:0 2px 10px #000,0 0 18px rgba(0,0,0,.9)}
 .pin.dn::after{top:auto;bottom:-30px}
 .pin i{position:absolute;left:50%;top:-24px;width:1px;height:15px;background:linear-gradient(180deg,rgba(234,226,207,.7),rgba(234,226,207,0))}
 .pin.dn i{top:auto;bottom:-24px;background:linear-gradient(0deg,rgba(234,226,207,.7),rgba(234,226,207,0))}
-.pin.on{background:var(--gold);box-shadow:0 0 0 5px rgba(6,5,4,.55),0 0 0 6px rgba(212,178,92,.55),0 0 30px 10px rgba(212,178,92,.3)}
+.pin.on{background:var(--gold);box-shadow:0 0 0 5px rgba(4,4,6,.55),0 0 0 6px rgba(212,178,92,.55),0 0 30px 10px rgba(212,178,92,.3)}
 .pin.on::after{color:var(--gold)}
 .parts{display:flex;flex-direction:column;gap:clamp(12px,1.4vw,22px)}
 .part{padding:18px 0;border-top:1px solid rgba(234,226,207,.10);transition:opacity .45s,transform .45s;position:relative}
@@ -203,8 +204,8 @@ main{position:relative;z-index:1}
 .part.lit .nm,.part.lit .pc{color:var(--gold)}
 .seedfig{position:relative;margin:clamp(26px,3.4vw,48px) auto 0;max-width:820px}
 .seedfig img{width:100%;height:auto;display:block;
-  -webkit-mask-image:radial-gradient(74% 70% at 50% 50%,#000 56%,rgba(0,0,0,.5) 82%,transparent 100%);
-  mask-image:radial-gradient(74% 70% at 50% 50%,#000 56%,rgba(0,0,0,.5) 82%,transparent 100%)}
+  
+  mix-blend-mode:screen}
 .mono-note{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:14px}
 .tie{margin-top:clamp(34px,4.4vw,64px);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,52px)}
 .tie div{background:none;padding:20px 0 0;position:relative}
@@ -251,7 +252,7 @@ main{position:relative;z-index:1}
 /* biomaterials block */
 .bio{margin-top:clamp(46px,5.5vw,90px);align-items:center;gap:clamp(28px,4.5vw,80px)}
 .biofig img{width:100%;height:auto;display:block;
-  -webkit-mask-image:radial-gradient(80% 78% at 50% 50%,#000 54%,rgba(0,0,0,.5) 82%,transparent 100%);mask-image:radial-gradient(80% 78% at 50% 50%,#000 54%,rgba(0,0,0,.5) 82%,transparent 100%)}
+  mix-blend-mode:screen}
 .biotx .h3{margin:10px 0 18px}
 .biotx p{font-size:14px;color:var(--cream2);line-height:1.8;margin-bottom:14px}
 .biotx p b{color:var(--cream);font-weight:400}
@@ -268,7 +269,7 @@ main{position:relative;z-index:1}
 /* real photographed pack objects */
 .obj.realcard{width:60%;left:2%;top:16%;background:none;border:0;box-shadow:none;padding:0}
 .obj.realcard img{width:100%;height:auto;display:block;
-  -webkit-mask-image:radial-gradient(76% 76% at 50% 50%,#000 56%,rgba(0,0,0,.5) 82%,transparent 100%);mask-image:radial-gradient(76% 76% at 50% 50%,#000 56%,rgba(0,0,0,.5) 82%,transparent 100%)}
+  mix-blend-mode:screen}
 /* the wordmark is etched in real type, not generated */
 .obj.realcard .etch{position:absolute;left:24%;top:41%;transform:rotate(-1deg) skewY(-2.5deg);display:flex;flex-direction:column;gap:5px;pointer-events:none}
 .obj.realcard .etch b{font-family:var(--disp);font-size:clamp(15px,1.5vw,23px);letter-spacing:.2em;font-weight:400;
@@ -276,8 +277,27 @@ main{position:relative;z-index:1}
 .obj.realcard .etch i{font-style:normal;font-size:8.5px;letter-spacing:.26em;color:rgba(58,44,14,.5);text-shadow:0 1px 0 rgba(255,232,168,.3)}
 .obj.realcushma{width:31%;right:1%;top:2%;background:none;border:0;box-shadow:none;padding:0}
 .obj.realcushma img{width:100%;height:auto;display:block;
-  -webkit-mask-image:linear-gradient(180deg,#000 76%,transparent 100%);mask-image:linear-gradient(180deg,#000 76%,transparent 100%)}
+  mix-blend-mode:screen}
 .obj.realcushma .tagline{position:absolute;left:0;bottom:2%;font-family:var(--hand);font-size:17px;color:var(--cream2);white-space:nowrap}
+
+
+/* black-background artwork is composited, not pasted: screen blend makes the
+   black literally become the page. no mask, no edge, no rectangle. */
+.blend{mix-blend-mode:screen;-webkit-mask-image:none!important;mask-image:none!important}
+
+
+/* two ways: two solid panels pushed right so the discard pile stays visible on the left */
+.ways{margin-top:clamp(30px,3.6vw,52px);margin-left:auto;width:min(100%,660px);display:grid;gap:14px}
+.way{position:relative;padding:26px 28px;border-radius:18px;text-align:left;
+  background:linear-gradient(180deg,rgba(4,4,6,.93),rgba(4,4,6,.88));
+  box-shadow:0 0 0 1px rgba(234,226,207,.10),0 30px 60px -30px rgba(0,0,0,.9)}
+.way .eb{display:block;margin-bottom:8px}
+.way .h3{margin:0 0 10px}
+.way p{font-size:14px;color:var(--cream2);line-height:1.72;max-width:none;margin:0}
+.way p b{color:var(--cream);font-weight:400}
+.waysfoot{margin:4px 0 0;padding:14px 28px;border-radius:14px;text-align:left;font-size:12px;color:var(--dim);
+  background:rgba(4,4,6,.88);box-shadow:0 0 0 1px rgba(234,226,207,.07)}
+@media(max-width:1020px){.ways{width:100%}}
 
 /* FIELD notes */
 .notes{position:relative;margin-top:clamp(30px,4vw,60px);height:clamp(620px,60vw,880px)}
@@ -374,13 +394,13 @@ main{position:relative;z-index:1}
 .rbar i{width:0;background:var(--cream)}
 .rbar i:nth-child(1){opacity:.95}.rbar i:nth-child(2){opacity:.75}.rbar i:nth-child(3){opacity:.55}.rbar i:nth-child(4){opacity:.4}.rbar i:nth-child(5){opacity:.3}.rbar i:nth-child(6){opacity:.2}
 .huskband{min-height:60svh}
-.huskband .bg::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(6,5,4,0) 30%,rgba(6,5,4,.8) 70%)}
+.huskband .bg::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(4,4,6,0) 30%,rgba(4,4,6,.8) 70%)}
 
 /* CLOSE */
 .close{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;text-align:center}
 .close .media{position:absolute;inset:0;z-index:0}
 .close .media video{width:100%;height:100%;object-fit:cover;object-position:50% 40%;-webkit-mask-image:radial-gradient(48% 55% at 50% 45%,#000 20%,rgba(0,0,0,.45) 60%,transparent 100%);mask-image:radial-gradient(48% 55% at 50% 45%,#000 20%,rgba(0,0,0,.45) 60%,transparent 100%)}
-.close .media::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 50%,rgba(6,5,4,.55),rgba(6,5,4,.2) 60%,transparent)}
+.close .media::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 50%,rgba(4,4,6,.55),rgba(4,4,6,.2) 60%,transparent)}
 .close .wrap{position:relative;z-index:2}
 .close .cdm{display:flex;gap:22px;margin:30px auto 34px;justify-content:center}
 .close .cdm .v{font-family:var(--disp);font-size:clamp(34px,4vw,64px);line-height:1}
@@ -388,16 +408,16 @@ main{position:relative;z-index:1}
 .close .form{margin:32px auto 0;justify-content:center}
 
 footer{position:relative;z-index:1;padding:80px 0 60px;overflow:hidden}
-footer .wm{font-family:var(--disp);font-size:clamp(90px,19vw,340px);line-height:.8;letter-spacing:.02em;text-align:center;user-select:none;
+footer .wm{font-family:var(--disp);font-size:clamp(62px,14.5vw,250px);line-height:.92;letter-spacing:.03em;text-align:center;user-select:none;padding:0 clamp(16px,3vw,40px);
   color:rgba(234,226,207,.05);
-  background-image:url(camo.webp);background-size:118% auto;background-position:center 46%;
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.30}
+  background-image:url(camo.webp);background-size:140% auto;background-position:center 46%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.62}
 @supports not ((-webkit-background-clip:text) or (background-clip:text)){footer .wm{-webkit-text-fill-color:rgba(234,226,207,.05);opacity:1}}
 /* roadmap sits on a photo: give it its own floor so every row is readable */
 .rmapwrap{position:relative}
 .rmapwrap::before{content:"";position:absolute;inset:-26px -30px -22px -30px;z-index:-1;
-  background:radial-gradient(120% 100% at 30% 0%,rgba(6,5,4,.94),rgba(6,5,4,.86) 60%,rgba(6,5,4,.80));border-radius:26px}
-footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:baseline;margin-top:-1.2em;position:relative}
+  background:radial-gradient(120% 100% at 30% 0%,rgba(4,4,6,.94),rgba(4,4,6,.86) 60%,rgba(4,4,6,.80));border-radius:26px}
+footer .row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:baseline;margin-top:26px;position:relative}
 footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
 .joined{position:fixed;left:0;right:0;bottom:0;z-index:160;background:var(--cream);color:var(--bg);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:14px;display:none}
 
@@ -595,7 +615,7 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
 
     <div class="facts" data-f>
       <div class="fact"><span class="fk">Cauliflory</span><span class="fv">The botanical name</span><p>Cacao flowers and fruits straight from the trunk and the old wood, not the branch tips. It shares that with jackfruit, durian and cupuaçu.</p></div>
-      <div class="fact"><span class="fk">65-75%</span><span class="fv">Never becomes chocolate</span><p>Of the fresh weight of the fruit. The mucilage alone is 15-20% — the liquid that drains into the soil during fermentation.</p></div>
+      <div class="fact"><span class="fk">Most of it</span><span class="fv">Never becomes chocolate</span><p>Nobody can give you one honest number — it moves with the variety, the harvest and how ripe you cut it. What does not move: the seed is the small part, and it is the only part with a market.</p></div>
       <div class="fact"><span class="fk">12 g/L</span><span class="fv">Bacterial cellulose</span><p>Grown from discarded cacao mucilage with no added sugar. Fourteen days, 25-30 °C, fed only on what the harvest throws away.</p></div>
     </div>
 
@@ -740,11 +760,11 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
   <div class="in wrap">
     <div class="num"><span class="n">[ 08 ]</span><span class="t">Where the money goes</span></div>
     <h2 class="h h2"><span class="ln"><span data-l>Every founding dollar</span></span><span class="ln"><span data-l>splits two ways.</span></span></h2>
-    <div class="two">
-      <div data-f><span class="eb">I · The supply chain</span><div class="h h3">Names, not certificates</div><p>Direct relationships with the growers of the Peruvian valley. Paid above market. Published. Today that is one name: <b>Paytiti Peru, the Tupayachi family.</b> More will join it.</p></div>
-      <div data-f><span class="eb">II · The next products</span><div class="h h3">Founder-led R&D</div><p>Every product developed in-house, from the parts of cacao that never become chocolate. <b>No outsourced lab. No white coats for the camera.</b></p></div>
+    <div class="ways">
+      <div class="way" data-f><span class="eb">I · The supply chain</span><div class="h h3">Names, not certificates</div><p>Direct relationships with the growers of the Peruvian valley. Paid above market. Published. Today that is one name: <b>Paytiti Peru, the Tupayachi family.</b> More will join it.</p></div>
+      <div class="way" data-f><span class="eb">II · The next products</span><div class="h h3">Founder-led R&amp;D</div><p>Every product developed in-house, from the parts of cacao that never become chocolate. <b>No outsourced lab. No white coats for the camera.</b></p></div>
+      <p class="waysfoot" data-f>We don't do charity. We build markets. &nbsp;·&nbsp; Numbers published after Batch 001.</p>
     </div>
-    <p class="micro" data-f style="margin-top:22px">We don't do charity. We build markets. &nbsp;·&nbsp; Numbers published after Batch 001.</p>
     <div class="road rmapwrap" data-f>
       <div class="num" style="justify-content:flex-start"><span class="n">10-year roadmap</span><span class="t">Their ceiling is our floor.</span></div>
       <div class="rrow h0"><span>Stage</span><span>When</span><span>What enters the system</span><span style="text-align:right">In use</span></div>
