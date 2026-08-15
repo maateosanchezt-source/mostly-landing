@@ -32,8 +32,20 @@ main{position:relative;z-index:1}
 
 /* progress + bar */
 .prog{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--cream);z-index:150;opacity:.7}
-.bar{position:fixed;top:0;left:0;right:0;z-index:140;display:flex;justify-content:space-between;align-items:center;padding:16px clamp(20px,4vw,64px);mix-blend-mode:difference}
-.logo{font-family:var(--disp);font-size:20px;letter-spacing:.16em;color:#fff;text-decoration:none}
+.bar{position:fixed;top:0;left:0;right:0;z-index:140;display:flex;justify-content:space-between;align-items:center;padding:16px clamp(20px,4vw,64px);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .4s}
+.bar.hid{transform:translateY(-118%);opacity:0}
+.bar::before{content:"";position:absolute;inset:-1px 0 -34px 0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(6,5,4,.97) 0%,rgba(6,5,4,.90) 46%,rgba(6,5,4,.55) 74%,rgba(6,5,4,0) 100%);
+  backdrop-filter:blur(9px) saturate(.9);-webkit-backdrop-filter:blur(9px) saturate(.9);
+  -webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}
+/* wordmark = a window onto the pod skin. the fruit's own camo. */
+.logo{font-family:var(--disp);font-size:20px;letter-spacing:.16em;text-decoration:none;color:var(--cream);
+  background-image:url(camo.webp);background-size:230% auto;background-position:26% 46%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 10px rgba(0,0,0,.9));transition:background-position 1.2s cubic-bezier(.2,.8,.2,1)}
+.logo:hover{background-position:74% 58%}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){.logo{-webkit-text-fill-color:var(--cream)}}
 .bar .r{display:flex;align-items:center;gap:22px}
 .bar .lab{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#fff;opacity:.85}
 .bar .lab b{font-weight:700}
@@ -84,6 +96,13 @@ main{position:relative;z-index:1}
 .ladder p{font-size:clamp(15px,1.2vw,19px);line-height:1.6;color:var(--cream2)}
 .ladder p b{color:#fff;font-weight:700}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.tlink{color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(234,226,207,.45);padding-bottom:1px;white-space:nowrap;transition:border-color .3s,color .3s}
+.tlink:hover{color:var(--gold);border-color:var(--gold)}
+/* the thread: one line that hands you to the next section */
+.hook{margin-top:clamp(34px,4.4vw,64px);padding-top:22px;border-top:1px solid var(--faint);display:flex;align-items:baseline;gap:14px;font-size:12.5px;color:var(--dim);letter-spacing:.02em}
+.hook b{font-weight:400;color:var(--cream)}
+.hook .ar{font-family:var(--disp);font-size:15px;color:var(--gold);flex:0 0 auto}
+.al-c .hook{justify-content:center}.al-r .hook{justify-content:flex-end}
 .hero-r{position:relative;z-index:2;min-width:0;padding:0 clamp(20px,4vw,64px) clamp(56px,7vh,100px);display:flex;justify-content:flex-end}
 .cd{text-align:right;position:relative;padding:26px 0 0}
 .cd::before{content:"";position:absolute;inset:-40px -60px -60px -80px;background:radial-gradient(60% 70% at 70% 60%,rgba(6,5,4,.92),rgba(6,5,4,.55) 55%,transparent 80%);z-index:-1;pointer-events:none}
@@ -186,8 +205,17 @@ main{position:relative;z-index:1}
 .letter p b{color:#fff;font-weight:700}
 .letter .sig{font-family:var(--hand);font-size:clamp(34px,3vw,48px);margin-top:20px;color:var(--cream)}
 .fph{position:sticky;top:100px}
-.fph img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:60% 30%;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent 100%),linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,#000 70%,transparent 100%),linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-composite:intersect}
-.fph .cap{position:absolute;left:0;bottom:8%;font-family:var(--hand);font-size:22px;color:var(--cream)}
+/* founder = a real print in a vintage mount, not a fade. hard, deliberate edge. */
+.fph .mount{background:linear-gradient(168deg,#efe7d4,#e2d8c0 58%,#d3c8ae);padding:16px 16px 62px;transform:rotate(-1.4deg);
+  box-shadow:0 40px 80px -26px rgba(0,0,0,.95),0 2px 0 rgba(255,255,255,.35) inset,0 0 0 1px rgba(0,0,0,.35);position:relative}
+.fph .mount::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.20),transparent 60%)}
+.fph img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:60% 30%;display:block;
+  filter:saturate(.84) contrast(1.06) sepia(.10);box-shadow:0 0 0 1px rgba(0,0,0,.45)}
+.fph .cap{position:absolute;left:18px;right:18px;bottom:18px;font-family:var(--hand);font-size:23px;line-height:1.05;color:#3a2f22;text-align:left}
+.fph .tapeL,.fph .tapeR{position:absolute;width:96px;height:28px;background:rgba(240,233,214,.5);box-shadow:0 1px 3px rgba(0,0,0,.4);backdrop-filter:blur(1px);z-index:2}
+.fph .tapeL{left:-26px;top:24px;transform:rotate(-32deg)}
+.fph .tapeR{right:-26px;bottom:64px;transform:rotate(-28deg)}
 
 /* PACKS — product hero style */
 .packs{display:flex;flex-direction:column;gap:clamp(60px,7vw,120px);margin-top:clamp(40px,5vw,80px)}
@@ -268,7 +296,15 @@ main{position:relative;z-index:1}
 .close .form{margin:32px auto 0;justify-content:center}
 
 footer{position:relative;z-index:1;padding:80px 0 60px;overflow:hidden}
-footer .wm{font-family:var(--disp);font-size:clamp(90px,19vw,340px);line-height:.8;letter-spacing:.02em;color:rgba(234,226,207,.05);text-align:center;user-select:none}
+footer .wm{font-family:var(--disp);font-size:clamp(90px,19vw,340px);line-height:.8;letter-spacing:.02em;text-align:center;user-select:none;
+  color:rgba(234,226,207,.05);
+  background-image:url(camo.webp);background-size:118% auto;background-position:center 46%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.30}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){footer .wm{-webkit-text-fill-color:rgba(234,226,207,.05);opacity:1}}
+/* roadmap sits on a photo: give it its own floor so every row is readable */
+.rmapwrap{position:relative}
+.rmapwrap::before{content:"";position:absolute;inset:-22px -26px -18px -26px;z-index:-1;border-radius:2px;
+  background:linear-gradient(180deg,rgba(6,5,4,.90),rgba(6,5,4,.82));backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
 footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:baseline;margin-top:-1.2em;position:relative}
 footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
 .joined{position:fixed;left:0;right:0;bottom:0;z-index:160;background:var(--cream);color:var(--bg);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:14px;display:none}
@@ -277,8 +313,8 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
   .hero{grid-template-columns:1fr;align-items:start}
   .hero-media{inset:0}
   .hero-media video{object-position:50% 20%;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9) 0,rgba(0,0,0,.6) 40%,transparent 78%);mask-image:linear-gradient(180deg,rgba(0,0,0,.9) 0,rgba(0,0,0,.6) 40%,transparent 78%)}
-  .hero-l{padding-top:16px;padding-bottom:70px}
-  .hero-r{order:-1;justify-content:flex-start;padding-top:44vh;padding-bottom:26px}
+  .hero-l{padding-top:26vh;padding-bottom:44px}
+  .hero-r{order:1;justify-content:flex-start;padding-top:6px;padding-bottom:40px}
   .cd{text-align:left;padding-top:0}.cd .row{justify-content:flex-start}.cd::before{display:none}
   .cd .v{font-size:clamp(40px,11vw,60px)}
   .why,.founder,.pack,.two{grid-template-columns:1fr}
@@ -335,8 +371,7 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
       <button class="btn" type="submit">Take a number →</button>
     </form>
     <div class="hero-cta" data-h>
-      <a class="btn ghost" href="#packs">See what you get ↓</a>
-      <span class="micro" style="margin:0">Free number, or a founder pack from $49.</span>
+      <span class="micro" style="margin:0">Free number, or a founder pack from $49. <a class="tlink" href="#packs">See what you get ↓</a></span>
     </div>
     <div class="taken" data-h>
       <div class="ticks" data-ticks></div>
@@ -474,6 +509,7 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
       <div class="pillar" data-f><div class="k">II</div><div class="h h3">Sacred<br>by origin.</div></div>
       <div class="pillar" data-f><div class="k">III</div><div class="h h3">Futuristic<br>by ambition.</div></div>
     </div>
+    <div class="hook" data-f><span class="ar">↓</span><span>Three promises are easy to write. <b>Here is who has to keep them.</b></span></div>
   </div>
 </section>
 
@@ -495,8 +531,9 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
         <div class="sig" data-f>— Mateo</div>
       </div>
     </div>
-    <div class="fph" data-f><img src="founder.webp" alt="Mateo, cooking" loading="lazy" decoding="async"><span class="cap">cooking on stage, a lifetime ago</span></div>
+    <div class="fph" data-f><div class="mount"><span class="tapeL"></span><span class="tapeR"></span><img src="founder.webp" alt="Mateo, cooking" loading="lazy" decoding="async"><span class="cap">cooking on stage, a lifetime ago</span></div></div>
   </div>
+  <div class="wrap"><div class="hook" data-f><span class="ar">↓</span><span>That is the whole story. <b>What follows is just how you get in the door.</b></span></div></div>
 </section>
 
 <!-- 07 PACKS — product section -->
@@ -592,8 +629,8 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
       <div data-f><span class="eb">II · The next products</span><div class="h h3">Founder-led R&D</div><p>Every product developed in-house, from the parts of cacao that never become chocolate. <b>No outsourced lab. No white coats for the camera.</b></p></div>
     </div>
     <p class="micro" data-f style="margin-top:22px">We don't do charity. We build markets. &nbsp;·&nbsp; Numbers published after Batch 001.</p>
-    <div class="road" data-f>
-      <div class="num" style="justify-content:flex-start"><span class="n">10-year roadmap</span><span class="t">Every chocolate brand on earth, combined, uses ~20% of the cacao plant. Their ceiling is our floor.</span></div>
+    <div class="road rmapwrap" data-f>
+      <div class="num" style="justify-content:flex-start"><span class="n">10-year roadmap</span><span class="t">Their ceiling is our floor.</span></div>
       <div class="rrow h0"><span>Stage</span><span>When</span><span>What enters the system</span><span style="text-align:right">In use</span></div>
       <div class="rrow"><span class="st">STAGE 1</span><span class="st">TODAY</span><span class="w">nib · shell</span><span class="pc">18%</span></div>
       <div class="rrow"><span class="st">STAGE 2</span><span class="st">YEAR 2-3</span><span class="w">+ pulp (mucilage)</span><span class="pc">30%</span></div>
@@ -681,6 +718,12 @@ footer a{color:var(--dim);text-decoration:none;font-size:11px;letter-spacing:.16
   document.querySelectorAll('.vis').forEach(function(v){v.querySelectorAll('.obj').forEach(function(o,i){G.to(o,{y:(i%2?-1:1)*10,duration:3+i*.6,yoyo:true,repeat:-1,ease:'sine.inOut'});});});
   /* roadmap bar */
   var rb=document.querySelector('[data-rbar]'); if(rb) G.to(rb.children,{width:'16.666%',duration:1.1,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:rb,start:'top 85%'}});
+
+  /* header gets out of the way going down, comes back coming up */
+  var bar=document.querySelector('.bar');
+  if(bar) ScrollTrigger.create({start:'top -140',end:'max',onUpdate:function(s){
+    bar.classList.toggle('hid', s.direction===1);
+  },onLeaveBack:function(){bar.classList.remove('hid')}});
 
   /* anatomy: pins <-> parts, two-way */
   var pins=[].slice.call(document.querySelectorAll('.pin[data-k]')),
